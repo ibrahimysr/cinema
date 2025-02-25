@@ -16,7 +16,7 @@ class MovieInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 110,
-      padding: const EdgeInsets.all(8),
+      padding: context.paddingLow,
       decoration: BoxDecoration(
         color: Colors.white10.withOpacity(0.05),
         borderRadius: BorderRadius.circular(15),
@@ -28,7 +28,7 @@ class MovieInfo extends StatelessWidget {
             color: Appcolor.buttonColor,
             size: 20,
           ),
-          const SizedBox(height: 4),
+           SizedBox(height: context.getDynamicHeight(0.8)),
           Text(
             name,
             style: AppTextStyles.bodySmall.copyWith(
@@ -36,7 +36,7 @@ class MovieInfo extends StatelessWidget {
               fontSize: 11,
             ),
           ),
-          const SizedBox(height: 4),
+           SizedBox(height: context.getDynamicHeight(0.4)),
           Text(
             value,
             style: AppTextStyles.bodySmall.copyWith(

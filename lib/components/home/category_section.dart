@@ -75,7 +75,7 @@ class CategorySection extends StatelessWidget {
             }
             
             if (allMoviesViewModel.error.isNotEmpty) {
-              return Center(
+              return const Center(
                 child: Text(
                   'Kategoriler yüklenirken bir hata oluştu',
                   style: AppTextStyles.bodySmall,
@@ -86,7 +86,7 @@ class CategorySection extends StatelessWidget {
             final genres = allMoviesViewModel.genres;
             
             if (genres.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text(
                   'Kategori bulunamadı',
                   style: AppTextStyles.bodySmall,
@@ -104,7 +104,6 @@ class CategorySection extends StatelessWidget {
                   children: List.generate(
                     displayGenres.length,
                     (index) {
-                      // Her kategori için animasyon değeri
                       final animation = CurvedAnimation(
                         parent: animationController,
                         curve: Interval(
@@ -114,7 +113,6 @@ class CategorySection extends StatelessWidget {
                         ),
                       );
                       
-                      // Animasyon değerini sınırla
                       final animationValue = animation.value.clamp(0.0, 1.0);
                       
                       return GestureDetector(

@@ -1,5 +1,6 @@
 import 'package:cinema/components/components.dart';
 import 'package:cinema/core/constants/auth_texts.dart';
+import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _isPasswordVisible = false;
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _passwordController = TextEditingController(); 
-    final _passwordConfirmController = TextEditingController();
-
+  final _passwordController = TextEditingController();
+  final _passwordConfirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,35 +30,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: context.paddingNormal * 1.1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 40),
+                SizedBox(height: context.getDynamicHeight(5)),
                 const Text(
                   AuthTexts.registerTitle,
                   style: AppTextStyles.headerLarge,
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: context.getDynamicHeight(1)),
                 const Text(
                   AuthTexts.registerSubtitle,
                   style: AppTextStyles.caption,
                 ),
-                const SizedBox(height: 40),
+                SizedBox(height: context.getDynamicHeight(5)),
                 CustomTextField(
                   label: AuthTexts.usernameLabel,
                   hintText: AuthTexts.usernameHint,
                   controller: _usernameController,
                   prefixIcon: Icons.person_outline,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(2)),
                 CustomTextField(
                   label: AuthTexts.emailLabel,
                   hintText: AuthTexts.emailHint,
                   controller: _emailController,
                   prefixIcon: Icons.email_outlined,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(2)),
                 CustomTextField(
                   label: AuthTexts.passwordLabel,
                   hintText: AuthTexts.passwordHint,
@@ -71,8 +71,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       _isPasswordVisible = !_isPasswordVisible;
                     });
                   },
-                ), 
-                  const SizedBox(height: 24),
+                ),
+                SizedBox(height: context.getDynamicHeight(2)),
                 CustomTextField(
                   label: AuthTexts.confirmPasswordLabel,
                   hintText: AuthTexts.confirmPasswordHint,
@@ -86,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     });
                   },
                 ),
-                const SizedBox(height: 40),
+                SizedBox(height: context.getDynamicHeight(5)),
                 if (authViewModel.isLoading)
                   const Center(child: CircularProgressIndicator())
                 else
@@ -115,7 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       }
                     },
                   ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(3)),
                 Center(
                   child: Text(
                     AuthTexts.orOtherMethods,
@@ -125,7 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(4)),
                 CustomButton(
                   text: AuthTexts.googleRegister,
                   onPressed: () {
@@ -137,7 +137,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 24,
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: context.getDynamicHeight(2)),
                 CustomButton(
                   text: AuthTexts.facebookRegister,
                   onPressed: () {

@@ -1,4 +1,6 @@
+import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
+import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/pages/auth/login_screen.dart';
 import 'package:cinema/pages/home/home_page_cinema.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
@@ -9,18 +11,16 @@ import 'package:provider/provider.dart';
 import '../../viewmodels/auth_viewmodel.dart';
 
 class CinemaDrawer extends StatefulWidget {
-  final int currentIndex; // Hangi sayfada olduğumuzu belirtmek için
-  
-  const CinemaDrawer({
-    Key? key, 
-    this.currentIndex = 0
-  }) : super(key: key);
+  final int currentIndex;
+
+  const CinemaDrawer({Key? key, this.currentIndex = 0}) : super(key: key);
 
   @override
   State<CinemaDrawer> createState() => _CinemaDrawerState();
 }
 
-class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderStateMixin {
+class _CinemaDrawerState extends State<CinemaDrawer>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late int _selectedIndex;
@@ -59,95 +59,70 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
     Navigator.pop(context);
 
     switch (index) {
-      case 0: 
-        Navigator.pushReplacement(
-          context, 
-          MaterialPageRoute(builder: (context) => const  CinemaMainScreen())
-        );
+      case 0:
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const CinemaMainScreen()));
         break;
-      case 1: 
-        final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+      case 1:
+        final authViewModel =
+            Provider.of<AuthViewModel>(context, listen: false);
         if (!authViewModel.isLoggedIn) {
-          Navigator.push(
-            context, 
-            MaterialPageRoute(builder: (context) => const LoginScreen())
-          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()));
           return;
         }
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
       case 2:
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
-      case 3: 
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+      case 3:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
-      case 4: 
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+      case 4:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
-      case 5: 
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+      case 5:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
-      case 6: 
-       
-        final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+      case 6:
+        final authViewModel =
+            Provider.of<AuthViewModel>(context, listen: false);
         if (!authViewModel.isLoggedIn) {
-          Navigator.push(
-            context, 
-            MaterialPageRoute(builder: (context) => const LoginScreen())
-          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()));
           return;
         }
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
-      case 7: 
-       
-        final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+      case 7:
+        final authViewModel =
+            Provider.of<AuthViewModel>(context, listen: false);
         if (!authViewModel.isLoggedIn) {
-          Navigator.push(
-            context, 
-            MaterialPageRoute(builder: (context) => const LoginScreen())
-          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()));
           return;
         }
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
-      case 8: 
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+      case 8:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
-      case 9: 
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => const HomePageCinema())
-        );
+      case 9:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePageCinema()));
         break;
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -155,9 +130,9 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
       builder: (context, child) {
         return Container(
           width: 280,
-          decoration:const BoxDecoration(
+          decoration: const BoxDecoration(
             color: Appcolor.appBackgroundColor,
-            borderRadius:  BorderRadius.only(
+            borderRadius: BorderRadius.only(
               topRight: Radius.circular(20),
               bottomRight: Radius.circular(20),
             ),
@@ -165,7 +140,7 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
               BoxShadow(
                 color: Appcolor.buttonColor,
                 blurRadius: 35,
-                offset:  Offset(5, 0),
+                offset: Offset(5, 0),
               ),
             ],
           ),
@@ -183,8 +158,8 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
                     const SizedBox(height: 20),
                     _buildUserProfile(),
                     const SizedBox(height: 30),
-                    ..._buildMenuItems().map((item) => 
-                      FadeTransition(
+                    ..._buildMenuItems().map(
+                      (item) => FadeTransition(
                         opacity: _animation,
                         child: SlideTransition(
                           position: Tween<Offset>(
@@ -216,11 +191,12 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: context.paddingNormalVertical *
+          2, //const EdgeInsets.symmetric(vertical: 40),
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Appcolor.buttonColor,Appcolor.appBackgroundColor],
+          colors: [Appcolor.buttonColor, Appcolor.appBackgroundColor],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -229,30 +205,17 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
         children: [
           ScaleTransition(
             scale: _animation,
-            child: const Text(
-              "Cinema Plus",
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                letterSpacing: 1.5,
-              ),
-            ),
+            child: Text("Cinema Plus",
+                style: AppTextStyles.headerLarge.copyWith(fontSize: 26)),
           ),
-          const SizedBox(height: 5),
+          SizedBox(height: context.getDynamicHeight(1)),
           SlideTransition(
             position: Tween<Offset>(
               begin: const Offset(0, 1),
               end: Offset.zero,
             ).animate(_animation),
-            child: const Text(
-              "Film Randevu Sistemi",
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white70,
-                letterSpacing: 1.0,
-              ),
-            ),
+            child: const Text("Film Randevu Sistemi",
+                style: AppTextStyles.bodyMedium),
           ),
         ],
       ),
@@ -263,9 +226,9 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
     return Consumer<AuthViewModel>(
       builder: (context, authViewModel, child) {
         final user = authViewModel.user;
-        
+
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: context.paddingNormalHorizontal,
           child: Row(
             children: [
               ScaleTransition(
@@ -274,46 +237,33 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Appcolor.buttonColor, width: 2),
-                    color: Appcolor.buttonColor
-                  ),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Appcolor.buttonColor, width: 2),
+                      color: Appcolor.buttonColor),
                   child: Center(
-                    child: Text(
-                      user?.name.substring(0, 1).toUpperCase() ?? 'U',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: Text(user?.name.substring(0, 1).toUpperCase() ?? 'U',
+                        style:
+                            AppTextStyles.headerLarge.copyWith(fontSize: 24)),
                   ),
                 ),
               ),
-              const SizedBox(width: 15),
+              SizedBox(width: context.getDynamicWidth(4)),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     FadeTransition(
                       opacity: _animation,
-                      child: Text(
-                        user?.name ?? "Misafir Kullanıcı",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
+                      child: Text(user?.name ?? "Misafir Kullanıcı",
+                          style: AppTextStyles.headerMedium),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: context.getDynamicHeight(1)),
                   ],
                 ),
               ),
               IconButton(
                 icon: const Icon(Icons.settings, color: Colors.white70),
                 onPressed: () {
-             
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/settings');
                 },
@@ -332,29 +282,36 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
       {'icon': Icons.movie_outlined, 'title': "Vizyondaki Filmler", 'index': 2},
       {'icon': Icons.upcoming, 'title': "Yakında Gelecekler", 'index': 3},
       {'icon': Icons.theater_comedy, 'title': "Sinemalar", 'index': 4},
-      {'icon': Icons.local_activity_outlined, 'title': "Promosyonlar", 'index': 5},
+      {
+        'icon': Icons.local_activity_outlined,
+        'title': "Promosyonlar",
+        'index': 5
+      },
       {'icon': Icons.favorite_border, 'title': "Favorilerim", 'index': 6},
       {'icon': Icons.history, 'title': "İzleme Geçmişim", 'index': 7},
-      {'icon': Icons.notifications_outlined, 'title': "Bildirimler", 'index': 8},
+      {
+        'icon': Icons.notifications_outlined,
+        'title': "Bildirimler",
+        'index': 8
+      },
       {'icon': Icons.help_outline, 'title': "Yardım & Destek", 'index': 9},
     ];
-    
-    return items.map((item) => _buildMenuItem(
-      item['icon'], 
-      item['title'], 
-      item['index'], 
-      item['index'] == _selectedIndex
-    )).toList();
+
+    return items
+        .map((item) => _buildMenuItem(item['icon'], item['title'],
+            item['index'], item['index'] == _selectedIndex))
+        .toList();
   }
 
-  Widget _buildMenuItem(IconData icon, String title, int index, bool isSelected) {
+  Widget _buildMenuItem(
+      IconData icon, String title, int index, bool isSelected) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
-          colors: isSelected 
-              ? [Appcolor.buttonColor.withOpacity(0.5), Appcolor.grey] 
+          colors: isSelected
+              ? [Appcolor.buttonColor.withOpacity(0.5), Appcolor.grey]
               : [Appcolor.grey, Appcolor.grey],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -366,7 +323,7 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
         highlightColor: Appcolor.buttonColor,
         splashColor: Appcolor.buttonColor,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+          padding:  EdgeInsets.symmetric(horizontal: context.normalValue, vertical:  context.normalValue * 0.8),
           child: Row(
             children: [
               Icon(
@@ -374,7 +331,7 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
                 color: isSelected ? Appcolor.buttonColor : Colors.white,
                 size: 22,
               ),
-              const SizedBox(width: 15),
+               SizedBox(width: context.getDynamicWidth(4)),
               Text(
                 title,
                 style: TextStyle(
@@ -386,7 +343,8 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
               const Spacer(),
               Icon(
                 Icons.arrow_forward_ios,
-                color: (isSelected ? Appcolor.buttonColor : Colors.white).withOpacity(0.5),
+                color: (isSelected ? Appcolor.buttonColor : Colors.white)
+                    .withOpacity(0.5),
                 size: 12,
               ),
             ],
@@ -405,7 +363,8 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
               try {
                 await authViewModel.logout();
                 if (context.mounted) {
-                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil('/login', (route) => false);
                 }
               } catch (e) {
                 if (context.mounted) {
@@ -415,7 +374,9 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
                 }
               }
             } else {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen(),));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => LoginScreen(),
+              ));
             }
           },
           child: Container(
@@ -423,8 +384,8 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
             margin: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              gradient:const LinearGradient(
-                colors: [Appcolor.buttonColor , Appcolor.appBackgroundColor],
+              gradient: const LinearGradient(
+                colors: [Appcolor.buttonColor, Appcolor.appBackgroundColor],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),

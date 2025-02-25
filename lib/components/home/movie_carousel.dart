@@ -65,7 +65,7 @@ class _MovieCarouselState extends State<MovieCarousel> {
                         color: Colors.red,
                         size: 48,
                       ),
-                      const SizedBox(height: 16),
+                       SizedBox(height: context.getDynamicHeight(2)),
                       const Text(
                         'Filmler yüklenirken bir hata oluştu',
                         style: AppTextStyles.bodyMedium,

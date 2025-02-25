@@ -38,7 +38,10 @@ class GenreCategoryList extends StatelessWidget {
               
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:  EdgeInsets.symmetric(
+                  horizontal: context.normalValue, 
+                  vertical:  context.lowValue,
+                ) ,
                 itemCount: allMoviesViewModel.genres.length,
                 itemBuilder: (context, index) {
                   final genre = allMoviesViewModel.genres[index];
@@ -55,8 +58,8 @@ class GenreCategoryList extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () => onGenreSelected(genre),
                         child: Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                          margin:  EdgeInsets.only(right: context.lowValue),
+                          padding:  EdgeInsets.symmetric(horizontal: context.normalValue, vertical: context.lowValue),
                           decoration: BoxDecoration(
                             color: isSelected
                                 ? Appcolor.buttonColor
@@ -76,7 +79,7 @@ class GenreCategoryList extends StatelessWidget {
                                 color: isSelected ? Colors.white : Appcolor.buttonColor,
                                 size: 18,
                               ),
-                              const SizedBox(width: 8),
+                               SizedBox(width: context.getDynamicWidth(2)),
                               Text(
                                 genre,
                                 style: AppTextStyles.bodySmall.copyWith(

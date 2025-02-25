@@ -8,7 +8,7 @@ Widget buildMenuItem({
     required BuildContext context
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding:  EdgeInsets.only(bottom: context.normalValue),
       child: InkWell(
         onTap: onTap,
         child: Container(

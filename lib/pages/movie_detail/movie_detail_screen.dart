@@ -30,7 +30,7 @@ class MovieDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               SizedBox(height: context.getDynamicHeight(3)),
+              SizedBox(height: context.getDynamicHeight(3)),
               SizedBox(
                 height: 335,
                 child: Row(
@@ -99,7 +99,7 @@ class MovieDetailScreen extends StatelessWidget {
                   ],
                 ),
               ),
-               SizedBox(height: context.getDynamicHeight(3)),
+              SizedBox(height: context.getDynamicHeight(3)),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -114,7 +114,8 @@ class MovieDetailScreen extends StatelessWidget {
                   const SizedBox(width: 8),
                   if (movie.year.isNotEmpty && movie.year != 'N/A')
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: Appcolor.buttonColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(8),
@@ -130,12 +131,11 @@ class MovieDetailScreen extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: context.paddingNormalVertical, 
+                padding: context.paddingNormalVertical,
                 child: Divider(
                   color: Colors.white.withOpacity(0.1),
                 ),
               ),
-              
               if (movie.genre.isNotEmpty && movie.genre != 'N/A')
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,28 +148,29 @@ class MovieDetailScreen extends StatelessWidget {
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
-                      children: movie.genre.split(', ').map((genre) => 
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                          margin: const EdgeInsets.only(bottom: 4),
-                          decoration: BoxDecoration(
-                            color: Colors.white10,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            genre,
-                            style: AppTextStyles.bodySmall.copyWith(
-                              color: Colors.white,
-                              fontSize: 12,
-                            ),
-                          ),
-                        )
-                      ).toList(),
+                      children: movie.genre
+                          .split(', ')
+                          .map((genre) => Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 4),
+                                margin: const EdgeInsets.only(bottom: 4),
+                                decoration: BoxDecoration(
+                                  color: Colors.white10,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  genre,
+                                  style: AppTextStyles.bodySmall.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ))
+                          .toList(),
                     ),
                     SizedBox(height: context.getDynamicHeight(2)),
                   ],
                 ),
-              
               if (movie.director.isNotEmpty && movie.director != 'N/A')
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +189,6 @@ class MovieDetailScreen extends StatelessWidget {
                     SizedBox(height: context.getDynamicHeight(2)),
                   ],
                 ),
-              
               if (movie.actors.isNotEmpty && movie.actors != 'N/A')
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,12 +207,11 @@ class MovieDetailScreen extends StatelessWidget {
                     SizedBox(height: context.getDynamicHeight(2)),
                   ],
                 ),
-              
               const Text(
                 "Özet",
                 style: AppTextStyles.headerMedium,
               ),
-               SizedBox(height: context.getDynamicHeight(2)),
+              SizedBox(height: context.getDynamicHeight(2)),
               Text(
                 movie.synopsis,
                 style: AppTextStyles.bodySmall.copyWith(
@@ -220,8 +219,7 @@ class MovieDetailScreen extends StatelessWidget {
                   color: Colors.white60,
                 ),
               ),
-               SizedBox(height: context.getDynamicHeight(5)), 
-              
+              SizedBox(height: context.getDynamicHeight(5)),
               CustomButton(
                 text: "Rezervasyon Al",
                 onPressed: () {
@@ -233,8 +231,7 @@ class MovieDetailScreen extends StatelessWidget {
                   );
                 },
               ),
-
-               SizedBox(height: context.getDynamicHeight(4)), 
+              SizedBox(height: context.getDynamicHeight(4)),
             ],
           ),
         ),

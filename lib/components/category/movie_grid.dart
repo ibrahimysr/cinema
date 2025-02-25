@@ -153,7 +153,7 @@ class MovieGrid extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: context.paddingNormal,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -166,7 +166,7 @@ class MovieGrid extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 6),
+                   SizedBox(height: context.getDynamicHeight(0.5)),
                   Row(
                     children: [
                       const FaIcon(
@@ -174,7 +174,7 @@ class MovieGrid extends StatelessWidget {
                         color: Colors.amber,
                         size: 14,
                       ),
-                      const SizedBox(width: 4),
+                       SizedBox(width: context.getDynamicWidth(1)),
                       Text(
                         "${movie.rating}/10",
                         style: AppTextStyles.bodySmall.copyWith(
@@ -190,7 +190,7 @@ class MovieGrid extends StatelessWidget {
                               color: Colors.white60,
                               size: 12,
                             ),
-                            const SizedBox(width: 4),
+                       SizedBox(width: context.getDynamicWidth(1)),
                             Text(
                               "${movie.duration} dk",
                               style: AppTextStyles.bodySmall.copyWith(

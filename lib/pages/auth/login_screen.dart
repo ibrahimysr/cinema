@@ -1,6 +1,8 @@
 import 'package:cinema/components/components.dart';
 import 'package:cinema/core/constants/auth_texts.dart';
+import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
+import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/pages/auth/register_screen.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,35 +30,24 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: context.paddingNormal * 1.1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 40),
-                const Text(
-                  AuthTexts.loginTitle,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  AuthTexts.loginSubtitle,
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(height: 40),
+                SizedBox(height: context.getDynamicHeight(5)),
+                const Text(AuthTexts.loginTitle,
+                    style: AppTextStyles.headerLarge),
+                SizedBox(height: context.getDynamicHeight(1)),
+                const Text(AuthTexts.loginSubtitle,
+                    style: AppTextStyles.caption),
+                SizedBox(height: context.getDynamicHeight(5)),
                 CustomTextField(
                   label: AuthTexts.emailLabel,
                   hintText: AuthTexts.emailHint,
                   controller: _emailController,
                   prefixIcon: Icons.email_outlined,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(3)),
                 CustomTextField(
                   label: AuthTexts.passwordLabel,
                   hintText: AuthTexts.passwordHint,
@@ -76,16 +67,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       // Handle forgot password
                     },
-                    child: const Text(
-                      AuthTexts.forgotPassword,
-                      style: TextStyle(
-                        color: Appcolor.buttonColor,
-                        fontSize: 14,
-                      ),
-                    ),
+                    child: const Text(AuthTexts.forgotPassword,
+                        style: AppTextStyles.headerSmall),
                   ),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(3)),
                 if (authViewModel.isLoading)
                   const Center(child: CircularProgressIndicator())
                 else
@@ -112,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     },
                   ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(3)),
                 Center(
                   child: GestureDetector(
                     onTap: () {
@@ -123,16 +109,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
-                    child: const Text(
-                      AuthTexts.registerLink,
-                      style: TextStyle(
-                        color: Appcolor.buttonColor,
-                        fontSize: 14,
-                      ),
-                    ),
+                    child: const Text(AuthTexts.registerLink,
+                        style: AppTextStyles.bodyLarge),
                   ),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(3)),
                 Row(
                   children: [
                     const Expanded(
@@ -153,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: context.getDynamicHeight(3)),
                 CustomButton(
                   text: AuthTexts.googleLogin,
                   onPressed: () {
@@ -165,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 24,
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: context.getDynamicHeight(2)),
                 CustomButton(
                   text: AuthTexts.facebookLogin,
                   onPressed: () {
