@@ -4,7 +4,7 @@ import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/models/movie_model.dart';
-import 'package:cinema/pages/reservation_screen.dart';
+import 'package:cinema/pages/reservation/reservation_screen.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailScreen extends StatelessWidget {

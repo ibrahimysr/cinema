@@ -6,7 +6,6 @@ import '../models/user_model.dart';
 
 class AuthService {
   static const String baseUrl = 'http://10.10.27.29:8000/api';  // Android Emulator için localhost
-  // static const String baseUrl = 'http://127.0.0.1:8000/api';  // Web için localhost
   static const String tokenBoxName = 'auth_box';
   static const String tokenKey = 'access_token';
   static const String userKey = 'user_data';

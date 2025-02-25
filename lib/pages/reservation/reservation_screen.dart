@@ -1,10 +1,11 @@
 import 'package:cinema/components/components.dart';
+import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
-import 'package:cinema/pages/cinema_main_screen.dart';
+import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../models/seats_model.dart';
+import '../../models/seats_model.dart';
 
 class ReservationScreen extends StatefulWidget {
   const ReservationScreen({super.key});
@@ -50,13 +51,9 @@ class _ReservationScreenState extends State<ReservationScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
-        title: const Text(
+        title:  const Text(
           "Koltuk Seçin",
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppTextStyles.headerMedium
         ),
         centerTitle: true,
       ),
@@ -138,7 +135,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   ],
                 ),
               ),
-            const SizedBox(height: 30),
+             SizedBox(height: context.getDynamicHeight(4)),
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -158,7 +155,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 30),
+             SizedBox(height: context.getDynamicHeight(4)),
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 35),
@@ -174,7 +171,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     'Tarih ve Saati Seçin',
                     style: AppTextStyles.headerSmall,
                   ),
-                  const SizedBox(height: 35),
+             SizedBox(height: context.getDynamicHeight(4)),
                   // Date selection
                   SizedBox(
                     height: 100,
@@ -226,8 +223,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 35),
-                  // Time selection
+             SizedBox(height: context.getDynamicHeight(1)),
                   SizedBox(
                     height: 50,
                     child: ListView.builder(
@@ -278,7 +274,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 50),
+             SizedBox(height: context.getDynamicHeight(4)),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Row(
@@ -305,7 +301,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => CinemaMainScreen(),));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaMainScreen(),));
                             },
                             child: Container(
                               height: 60,
@@ -338,89 +334,4 @@ class _ReservationScreenState extends State<ReservationScreen> {
     );
   }
 
- Padding wlecomeBorder(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: SizedBox(
-        height: 65,
-        child: Stack(
-          children: [
-            Positioned(
-              top: -5,
-              width: MediaQuery.of(context).size.width - 50,
-              child: ClipPath(
-                clipper: ClipBorder(),
-                child: Container(
-                  width: double.infinity,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Appcolor.buttonColor.withOpacity(0.3),
-                        Colors.transparent
-                      ],
-                      stops: const [
-                        0.35,
-                        1,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: -10,
-              width: MediaQuery.of(context).size.width - 50,
-              child: ClipPath(
-                clipper: ClipShadow(),
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  color: Appcolor.buttonColor,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
-
-class ClipShadow extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height);
-    path.quadraticBezierTo(size.width / 2, -20, size.width, size.height);
-    path.lineTo(size.width, size.height - 5);
-    path.quadraticBezierTo(size.width / 2, -25, 0, size.height - 5);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
-
-class ClipBorder extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, size.height - 30);
-    path.quadraticBezierTo(size.width / 2, -20, 0, size.height - 30);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
-
-
-
- 

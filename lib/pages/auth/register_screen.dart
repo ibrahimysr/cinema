@@ -1,6 +1,6 @@
 import 'package:cinema/components/components.dart';
 import 'package:cinema/core/theme/text_style.dart';
-import 'package:cinema/pages/cinema_main_screen.dart';
+import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../viewmodels/auth_viewmodel.dart';

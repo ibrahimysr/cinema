@@ -1,7 +1,9 @@
+import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
+import 'package:cinema/core/theme/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../viewmodels/auth_viewmodel.dart';
+import '../../viewmodels/auth_viewmodel.dart';
 
 class AccountDetailsScreen extends StatelessWidget {
   const AccountDetailsScreen({super.key});
@@ -16,11 +18,7 @@ class AccountDetailsScreen extends StatelessWidget {
         backgroundColor: Appcolor.appBackgroundColor,
         title: const Text(
           'Hesap Bilgileri',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppTextStyles.headerLarge
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -28,7 +26,7 @@ class AccountDetailsScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: context.paddingNormal,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,13 +35,13 @@ class AccountDetailsScreen extends StatelessWidget {
               value: user?.name ?? '-',
               icon: Icons.person_outline,
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: context.getDynamicHeight(3)),
             _buildInfoSection(
               title: 'E-posta',
               value: user?.email ?? '-',
               icon: Icons.email_outlined,
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: context.getDynamicHeight(3)),
             _buildInfoSection(
               title: 'Rol',
               value: user?.roleId == 1 ? 'Super-Admin' : 'Admin',

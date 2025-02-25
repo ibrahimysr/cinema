@@ -5,6 +5,7 @@ Widget buildMenuItem({
     required IconData icon,
     required String title,
     required VoidCallback onTap,
+    required BuildContext context
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
@@ -19,11 +20,10 @@ Widget buildMenuItem({
           child: Row(
             children: [
               Icon(icon, color: Appcolor.buttonColor),
-              const SizedBox(width: 16),
+               SizedBox(width: context.getDynamicWidth(2)),
               Text(
                 title,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: AppTextStyles.bodyMedium.copyWith(
                   fontSize: 16,
                 ),
               ),

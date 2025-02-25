@@ -1,9 +1,9 @@
 import 'package:cinema/core/theme/color.dart';
-import 'package:cinema/pages/location_cinemas.dart';
-import 'package:cinema/pages/profile_screen.dart';
+import 'package:cinema/pages/location_cinema/location_cinemas.dart';
+import 'package:cinema/pages/profile/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'home/home_page_cinema.dart';
+import '../home/home_page_cinema.dart';
 
 class CinemaMainScreen extends StatefulWidget {
   const CinemaMainScreen({super.key});

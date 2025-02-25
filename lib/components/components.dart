@@ -26,4 +26,5 @@ part "movie_detail/movie_info.dart";
 
 //reservation  
 part "reservation/seat_status.dart";
+part "reservation/wlcomeborder.dart";
 
