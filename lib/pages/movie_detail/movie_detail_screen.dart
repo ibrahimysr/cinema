@@ -1,14 +1,15 @@
 import 'package:cinema/components/components.dart';
 import 'package:cinema/const.dart';
+import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/pages/reservation_screen.dart';
 import 'package:flutter/material.dart';
 
-class MovieDetailPage extends StatelessWidget {
+class MovieDetailScreen extends StatelessWidget {
   final Movie movie;
-  const MovieDetailPage({super.key, required this.movie});
+  const MovieDetailScreen({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +19,18 @@ class MovieDetailPage extends StatelessWidget {
         forceMaterialTransparency: true,
         foregroundColor: Colors.white,
         backgroundColor: Colors.transparent,
-        title: Text(
+        title: const Text(
           "Film Detayı",
           style: AppTextStyles.headerSmall,
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: context.paddingNormalHorizontal,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 30),
+               SizedBox(height: context.getDynamicHeight(3)),
               SizedBox(
                 height: 335,
                 child: Row(
@@ -69,22 +70,22 @@ class MovieDetailPage extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: context.getDynamicHeight(3)),
               Text(
                 movie.title,
                 style: AppTextStyles.headerLarge,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: context.paddingNormalVertical, 
                 child: Divider(
                   color: Colors.white.withOpacity(0.1),
                 ),
               ),
-              Text(
+              const Text(
                 "Özet",
                 style: AppTextStyles.headerMedium,
               ),
-              const SizedBox(height: 15),
+               SizedBox(height: context.getDynamicHeight(2)),
               Text(
                 movie.synopsis,
                 style: AppTextStyles.bodySmall.copyWith(
@@ -92,7 +93,7 @@ class MovieDetailPage extends StatelessWidget {
                   color: Colors.white60,
                 ),
               ),
-              const SizedBox(height: 30), 
+               SizedBox(height: context.getDynamicHeight(5)), 
               
               CustomButton(
                 text: "Rezervasyon Al",
@@ -106,7 +107,7 @@ class MovieDetailPage extends StatelessWidget {
                 },
               ),
 
-              const SizedBox(height: 20), 
+               SizedBox(height: context.getDynamicHeight(4)), 
             ],
           ),
         ),

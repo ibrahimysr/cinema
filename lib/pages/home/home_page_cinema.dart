@@ -4,7 +4,7 @@ import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/models/movie_model.dart';
-import 'package:cinema/pages/detail_page.dart';
+import 'package:cinema/pages/movie_detail/movie_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePageCinema extends StatefulWidget {
@@ -119,7 +119,7 @@ class _HomePageCinemaState extends State<HomePageCinema> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => MovieDetailPage(movie: movie),
+                                  builder: (_) => MovieDetailScreen(movie: movie),
                                 ),
                               );
                             },
