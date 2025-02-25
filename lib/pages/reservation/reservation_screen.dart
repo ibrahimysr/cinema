@@ -63,7 +63,6 @@ class _ReservationScreenState extends State<ReservationScreen> {
             const SizedBox(height: 30),
             wlecomeBorder(context),
             const SizedBox(height: 20),
-            // Seats section
                Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -172,7 +171,6 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     style: AppTextStyles.headerSmall,
                   ),
              SizedBox(height: context.getDynamicHeight(4)),
-                  // Date selection
                   SizedBox(
                     height: 100,
                     child: ListView.builder(

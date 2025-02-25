@@ -3,31 +3,26 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import '../base/base_service.dart';
 
-/// API isteklerini yönetmek için kullanılan sınıf
 class ApiClient {
   final http.Client _client;
   static const String baseUrl = BaseService.baseUrl;
   
   ApiClient({http.Client? client}) : _client = client ?? http.Client();
   
-  // Standart HTTP başlıkları
   Map<String, String> get _headers => {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   };
   
-  // Token ile birlikte HTTP başlıkları
   Map<String, String> _getAuthHeaders(String token) => {
     ..._headers,
     'Authorization': 'Bearer $token',
   };
   
-  // API endpoint'lerini oluşturmak için yardımcı metod
   Uri _buildUrl(String path) {
     return Uri.parse('$baseUrl/$path');
   }
   
-  /// GET isteği gönderir
   Future<Map<String, dynamic>> get(String path, {String? token}) async {
     try {
       final response = await _client.get(
@@ -42,7 +37,6 @@ class ApiClient {
     }
   }
   
-  /// POST isteği gönderir
   Future<Map<String, dynamic>> post(
     String path, 
     {Map<String, dynamic>? body, String? token}
@@ -61,7 +55,6 @@ class ApiClient {
     }
   }
   
-  /// PUT isteği gönderir
   Future<Map<String, dynamic>> put(
     String path, 
     {Map<String, dynamic>? body, String? token}
@@ -80,7 +73,6 @@ class ApiClient {
     }
   }
   
-  /// DELETE isteği gönderir
   Future<Map<String, dynamic>> delete(String path, {String? token}) async {
     try {
       final response = await _client.delete(
@@ -95,7 +87,6 @@ class ApiClient {
     }
   }
   
-  /// HTTP yanıtını işler
   Map<String, dynamic> _handleResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       if (response.body.isEmpty) {
@@ -109,7 +100,6 @@ class ApiClient {
     }
   }
   
-  /// İstemciyi kapatır
   void dispose() {
     _client.close();
   }

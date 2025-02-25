@@ -5,9 +5,11 @@ import 'storage/storage_service.dart';
 import 'user/user_service.dart';
 import 'now_playing_movie/now_playing_movie_service.dart';
 import 'now_playing_movie/now_playing_movie_service_interface.dart';
+import 'all_movies/all_movies_service.dart';
+import 'all_movies/all_movies_service_interface.dart';
+import 'movie/movie_details_service.dart';
+import 'movie/movie_details_service_interface.dart';
 
-/// Uygulama genelinde kullanılacak servisleri sağlayan sınıf.
-/// Dependency Injection için kullanılır.
 class ServiceProvider {
   static final ServiceProvider _instance = ServiceProvider._internal();
   
@@ -17,42 +19,39 @@ class ServiceProvider {
   
   ServiceProvider._internal();
   
-  // Servisler
   late final StorageService storageService;
   late final AuthServiceInterface authService;
   late final UserServiceInterface userService;
   late final ApiClient apiClient;
   late final NowPlayingMovieServiceInterface nowPlayingMovieService;
+  late final AllMoviesServiceInterface allMoviesService;
+  late final MovieDetailsServiceInterface filmService;
   
-  /// Servisleri başlatır
   Future<void> initialize() async {
-    // HTTP istemcisi
     final client = http.Client();
     
-    // API istemcisi
     apiClient = ApiClient(client: client);
     
-    // Storage servisi
     storageService = HiveStorageService();
     await storageService.init();
     
-    // Auth servisi
     authService = AuthService(
       storageService: storageService,
       client: client,
     );
     
-    // User servisi
     userService = UserService(
       storageService: storageService,
       client: client,
     );
     
-    // Vizyondaki filmler servisi
     nowPlayingMovieService = NowPlayingMovieService(client: client);
+    
+    allMoviesService = AllMoviesService(client: client);
+    
+    filmService = MovieDetailsService(client: client);
   }
   
-  /// Servisleri temizler
   void dispose() {
     apiClient.dispose();
   }

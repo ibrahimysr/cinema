@@ -1,17 +1,18 @@
+import 'package:cinema/core/services/service_provider.dart';
+import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/pages/auth/login_screen.dart';
-import 'package:cinema/pages/main/cinema_main_screen.dart';
+import 'package:cinema/pages/home/home_page_cinema.dart';
+import 'package:cinema/viewmodels/all_movies_viewmodel.dart';
+import 'package:cinema/viewmodels/auth_viewmodel.dart';
 import 'package:cinema/viewmodels/movie_viewmodel.dart';
+import 'package:cinema/viewmodels/film_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'core/services/index.dart';
-import 'viewmodels/auth_viewmodel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Servisleri başlat
-  final serviceProvider = ServiceProvider();
-  await serviceProvider.initialize();
+  await ServiceProvider().initialize();
   
   runApp(const MyApp());
 }
@@ -23,16 +24,40 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthViewModel()),
-        ChangeNotifierProvider(create: (_) => MovieViewModel()),
+        ChangeNotifierProvider(
+          create: (_) => AuthViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => MovieViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AllMoviesViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FilmViewModel(),
+        ),
       ],
       child: MaterialApp(
+        title: 'Cinema App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          scaffoldBackgroundColor: Appcolor.appBackgroundColor,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Appcolor.buttonColor,
+            brightness: Brightness.dark,
+          ),
           useMaterial3: true,
+          fontFamily: 'Poppins',
         ),
-        home: const CinemaMainScreen(),
+        home: Consumer<AuthViewModel>(
+          builder: (context, authViewModel, child) {
+            if (authViewModel.isLoggedIn) {
+              return const HomePageCinema();
+            } else {
+              return const LoginScreen();
+            }
+          },
+        ),
       ),
     );
   }
@@ -59,7 +84,7 @@ class _AuthCheckScreenState extends State<AuthCheckScreen> {
     if (mounted) {
       if (authViewModel.isLoggedIn) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const CinemaMainScreen()),
+          MaterialPageRoute(builder: (_) => const HomePageCinema()),
         );
       } else {
         Navigator.of(context).pushReplacement(

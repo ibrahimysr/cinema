@@ -1,4 +1,3 @@
-// 1. Yöntem: Builder kullanarak
 part of "../components.dart";
 
 AppBar headerParts(BuildContext context) {

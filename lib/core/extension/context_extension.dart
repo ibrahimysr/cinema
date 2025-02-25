@@ -26,7 +26,6 @@ extension MediaQueryExtensionDynamic on BuildContext {
   double getDynamicWidth(double percent) => width*(percent/100);
 }
 
-// paddings defined based on flex values defined above
 extension PaddingExtensionAll on BuildContext {
   EdgeInsets get paddingLow => EdgeInsets.all(lowValue);
   EdgeInsets get paddingNormal => EdgeInsets.all(normalValue);

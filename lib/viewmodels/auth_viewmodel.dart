@@ -35,7 +35,6 @@ class AuthViewModel extends ChangeNotifier {
       _user = await _userService.getProfile(_token);
       notifyListeners();
     } catch (e) {
-      // Profil bilgileri alınamazsa local'den almayı dene
       _user = await _userService.getUser();
       notifyListeners();
     }
@@ -85,7 +84,6 @@ class AuthViewModel extends ChangeNotifier {
       _user = null;
     } catch (e) {
       log('Logout sırasında hata oluştu: $e');
-      // Hata olsa bile local verileri temizle
       _token = null;
       _user = null;
     } finally {

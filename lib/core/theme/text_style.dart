@@ -1,4 +1,3 @@
-// Text Styles
 import 'package:cinema/core/theme/color.dart';
 import 'package:flutter/material.dart';
 

@@ -14,7 +14,6 @@ class CinemaMapScreen extends StatefulWidget {
 class _CinemaMapScreenState extends State<CinemaMapScreen> {
   final MapController mapController = MapController();
   
-  // Örnek sinema lokasyonları
   final List<Map<String, dynamic>> cinemas = [
     {
       'name': 'Max Cinema',
@@ -56,7 +55,6 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
               ),
               MarkerLayer(
                 markers: [
-                  // Kullanıcı konumu marker'ı
                   Marker(
                     point: const LatLng(32.7157, -117.1611),
                     width: 40,
@@ -69,7 +67,6 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
                       child: const Icon(Icons.my_location, color: Appcolor.appBackgroundColor, size: 20),
                     ),
                   ),
-                  // Sinema marker'ları
                   ...cinemas.map((cinema) => Marker(
                     point: cinema['location'],
                     width: 40,
@@ -95,7 +92,6 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
               ),
             ],
           ),
-          // Üst bar
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -123,7 +119,6 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  // Arama kutusu
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     height: 50,
@@ -154,7 +149,6 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
               ),
             ),
           ),
-          // Alt bilgi paneli
           Positioned(
             bottom: 0,
             left: 0,
@@ -276,7 +270,6 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
           backgroundColor: Colors.white,
           child: const Icon(Icons.gps_fixed, color: Appcolor.appBackgroundColor),
           onPressed: () {
-            // Kullanıcı konumuna git
           },
         ),
       ),

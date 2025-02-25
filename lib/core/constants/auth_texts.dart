@@ -1,5 +1,4 @@
 class AuthTexts {
-  // Login Screen Texts
   static const String loginTitle = 'Giriş Yapınız';
   static const String loginSubtitle = 'Lütfen Kayıtlı Hesabınızla Giriş Yapınız';
   static const String emailLabel = 'Email';
@@ -13,7 +12,6 @@ class AuthTexts {
   static const String googleLogin = 'Google İle Giriş';
   static const String facebookLogin = 'Facebook İle Giriş';
 
-  // Register Screen Texts
   static const String registerTitle = 'Kayıt Ol';
   static const String registerSubtitle = 'Devam etmek için lütfen bir hesap oluşturun';
   static const String usernameLabel = 'Kullanıcı Adı';

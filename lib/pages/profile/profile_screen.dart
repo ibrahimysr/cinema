@@ -93,21 +93,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: Icons.movie_outlined,
                     title: 'İzleme Geçmişi',
                     onTap: () {
-                      // İzleme geçmişi sayfasına git
                     },
                     context: context),
                 buildMenuItem(
                     icon: Icons.favorite_border,
                     title: 'Favori Filmler',
                     onTap: () {
-                      // Favori filmler sayfasına git
                     },
                     context: context),
                 buildMenuItem(
                     icon: Icons.settings_outlined,
                     title: 'Ayarlar',
                     onTap: () {
-                      // Ayarlar sayfasına git
                     },
                     context: context),
                 SizedBox(height: context.getDynamicHeight(3)),

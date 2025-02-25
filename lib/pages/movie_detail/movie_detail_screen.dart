@@ -136,7 +136,6 @@ class MovieDetailScreen extends StatelessWidget {
                 ),
               ),
               
-              // Film türleri
               if (movie.genre.isNotEmpty && movie.genre != 'N/A')
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,7 +170,6 @@ class MovieDetailScreen extends StatelessWidget {
                   ],
                 ),
               
-              // Yönetmen ve Oyuncular
               if (movie.director.isNotEmpty && movie.director != 'N/A')
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

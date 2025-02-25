@@ -75,7 +75,6 @@ class AuthService extends BaseService implements AuthServiceInterface {
       log('Response Body: ${response.body}');
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // Kayıt başarılı olduktan sonra otomatik login yap
         return await login(email, password);
       } else {
         final errorData = json.decode(response.body);
@@ -116,7 +115,6 @@ class AuthService extends BaseService implements AuthServiceInterface {
     } catch (e) {
       log('Logout sırasında hata oluştu: $e');
     } finally {
-      // API çağrısı başarısız olsa bile local verileri temizle
       await _storageService.removeData(tokenKey);
       await _storageService.removeData(userKey);
     }

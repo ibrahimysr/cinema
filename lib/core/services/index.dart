@@ -17,5 +17,13 @@ export 'user/user_service.dart';
 export 'now_playing_movie/now_playing_movie_service.dart';
 export 'now_playing_movie/now_playing_movie_service_interface.dart';
 
+// Tüm Filmler
+export 'all_movies/all_movies_service.dart';
+export 'all_movies/all_movies_service_interface.dart';
+
+// Film Servisi
+export 'movie/movie_details_service.dart';
+export 'movie/movie_details_service_interface.dart';
+
 // Service Provider
 export 'service_provider.dart'; 

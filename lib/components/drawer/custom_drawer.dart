@@ -46,9 +46,7 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
     super.dispose();
   }
 
-  // Sayfa geçişi için yardımcı metod
   void _navigateToPage(BuildContext context, int index) {
-    // Aynı sayfaya tıklandığında drawer'ı kapat
     if (index == _selectedIndex) {
       Navigator.pop(context);
       return;
@@ -58,19 +56,16 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
       _selectedIndex = index;
     });
 
-    // Drawer'ı kapat
     Navigator.pop(context);
 
-    // Farklı sayfalara yönlendirme
     switch (index) {
-      case 0: // Ana Sayfa
+      case 0: 
         Navigator.pushReplacement(
           context, 
           MaterialPageRoute(builder: (context) => const  CinemaMainScreen())
         );
         break;
-      case 1: // Randevularım
-        // Kullanıcı giriş yapmış mı kontrol et
+      case 1: 
         final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
         if (!authViewModel.isLoggedIn) {
           Navigator.push(
@@ -84,32 +79,32 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
           MaterialPageRoute(builder: (context) => const HomePageCinema())
         );
         break;
-      case 2: // Vizyondaki Filmler
+      case 2:
         Navigator.push(
           context, 
           MaterialPageRoute(builder: (context) => const HomePageCinema())
         );
         break;
-      case 3: // Yakında Gelecekler
+      case 3: 
         Navigator.push(
           context, 
           MaterialPageRoute(builder: (context) => const HomePageCinema())
         );
         break;
-      case 4: // Sinemalar
+      case 4: 
         Navigator.push(
           context, 
           MaterialPageRoute(builder: (context) => const HomePageCinema())
         );
         break;
-      case 5: // Promosyonlar
+      case 5: 
         Navigator.push(
           context, 
           MaterialPageRoute(builder: (context) => const HomePageCinema())
         );
         break;
-      case 6: // Favorilerim
-        // Kullanıcı giriş yapmış mı kontrol et
+      case 6: 
+       
         final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
         if (!authViewModel.isLoggedIn) {
           Navigator.push(
@@ -123,8 +118,8 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
           MaterialPageRoute(builder: (context) => const HomePageCinema())
         );
         break;
-      case 7: // İzleme Geçmişim
-        // Kullanıcı giriş yapmış mı kontrol et
+      case 7: 
+       
         final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
         if (!authViewModel.isLoggedIn) {
           Navigator.push(
@@ -138,13 +133,13 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
           MaterialPageRoute(builder: (context) => const HomePageCinema())
         );
         break;
-      case 8: // Bildirimler
+      case 8: 
         Navigator.push(
           context, 
           MaterialPageRoute(builder: (context) => const HomePageCinema())
         );
         break;
-      case 9: // Yardım & Destek
+      case 9: 
         Navigator.push(
           context, 
           MaterialPageRoute(builder: (context) => const HomePageCinema())
@@ -318,7 +313,7 @@ class _CinemaDrawerState extends State<CinemaDrawer> with SingleTickerProviderSt
               IconButton(
                 icon: const Icon(Icons.settings, color: Colors.white70),
                 onPressed: () {
-                  // Ayarlar sayfasına yönlendirme
+             
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/settings');
                 },
