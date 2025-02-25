@@ -146,7 +146,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
                             ),
                           ),
                         ),
-                        const Icon(Icons.tune, color: Colors.white),
+                         Icon(Icons.tune, color: Colors.white),
                       ],
                     ),
                   ),

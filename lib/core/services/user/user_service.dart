@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import '../models/user_model.dart';
-import 'auth_service.dart';
-import 'base_service.dart';
-import 'storage_service.dart';
+import '../../../models/user_model.dart';
+import '../auth/auth_service.dart';
+import '../base/base_service.dart';
+import '../storage/storage_service.dart';
 
 abstract class UserServiceInterface {
   Future<UserModel?> getUser();

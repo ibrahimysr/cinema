@@ -1,7 +1,8 @@
 import 'package:http/http.dart' as http;
-import 'auth_service.dart';
-import 'storage_service.dart';
-import 'user_service.dart';
+import 'api/api_client.dart';
+import 'auth/auth_service.dart';
+import 'storage/storage_service.dart';
+import 'user/user_service.dart';
 
 /// Uygulama genelinde kullanılacak servisleri sağlayan sınıf.
 /// Dependency Injection için kullanılır.
@@ -18,11 +19,15 @@ class ServiceProvider {
   late final StorageService storageService;
   late final AuthServiceInterface authService;
   late final UserServiceInterface userService;
+  late final ApiClient apiClient;
   
   /// Servisleri başlatır
   Future<void> initialize() async {
     // HTTP istemcisi
     final client = http.Client();
+    
+    // API istemcisi
+    apiClient = ApiClient(client: client);
     
     // Storage servisi
     storageService = HiveStorageService();
@@ -43,6 +48,6 @@ class ServiceProvider {
   
   /// Servisleri temizler
   void dispose() {
-    // Gerekirse servisleri temizle
+    apiClient.dispose();
   }
 } 

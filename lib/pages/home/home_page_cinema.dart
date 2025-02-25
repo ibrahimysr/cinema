@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:cinema/components/components.dart';
+import 'package:cinema/components/drawer/custom_drawer.dart';
 import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
@@ -39,6 +40,7 @@ class _HomePageCinemaState extends State<HomePageCinema> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CinemaDrawer(),
       backgroundColor: Appcolor.appBackgroundColor,
       appBar: headerParts(context),
       body: Column(
@@ -181,3 +183,4 @@ class _HomePageCinemaState extends State<HomePageCinema> {
     );
   }
 }
+

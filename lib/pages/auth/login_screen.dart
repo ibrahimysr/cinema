@@ -1,4 +1,5 @@
 import 'package:cinema/components/components.dart';
+import 'package:cinema/core/constants/auth_texts.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/pages/auth/register_screen.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 const SizedBox(height: 40),
                 const Text(
-                  'Giriş Yapınız',
+                  AuthTexts.loginTitle,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Lütfen Kayıtlı Hesabınızla Giriş Yapınız',
+                  AuthTexts.loginSubtitle,
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
@@ -50,15 +51,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 40),
                 CustomTextField(
-                  label: 'Email',
-                  hintText: 'Emailinizi Giriniz',
+                  label: AuthTexts.emailLabel,
+                  hintText: AuthTexts.emailHint,
                   controller: _emailController,
                   prefixIcon: Icons.email_outlined,
                 ),
                 const SizedBox(height: 24),
                 CustomTextField(
-                  label: 'Şifre',
-                  hintText: 'Şifrenizi Giriniz',
+                  label: AuthTexts.passwordLabel,
+                  hintText: AuthTexts.passwordHint,
                   controller: _passwordController,
                   prefixIcon: Icons.lock_outline,
                   isPassword: true,
@@ -76,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Handle forgot password
                     },
                     child: const Text(
-                      'Şifremi Unuttum',
+                      AuthTexts.forgotPassword,
                       style: TextStyle(
                         color: Appcolor.buttonColor,
                         fontSize: 14,
@@ -89,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Center(child: CircularProgressIndicator())
                 else
                   CustomButton(
-                    text: 'Giriş Yap',
+                    text: AuthTexts.loginButton,
                     onPressed: () async {
                       try {
                         await authViewModel.login(
@@ -123,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                     child: const Text(
-                      'Kayıt Ol',
+                      AuthTexts.registerLink,
                       style: TextStyle(
                         color: Appcolor.buttonColor,
                         fontSize: 14,
@@ -140,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Text(
-                        'Veya Başka Bir Yöntem Kullanarak',
+                        AuthTexts.orUseOtherMethod,
                         style: TextStyle(
                           color: Colors.grey[600],
                           fontSize: 14,
@@ -154,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 24),
                 CustomButton(
-                  text: 'Google İle Giriş',
+                  text: AuthTexts.googleLogin,
                   onPressed: () {
                     // Handle Google sign in
                   },
@@ -166,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 16),
                 CustomButton(
-                  text: 'Facebook İle Giriş',
+                  text: AuthTexts.facebookLogin,
                   onPressed: () {
                     // Handle Facebook sign in
                   },

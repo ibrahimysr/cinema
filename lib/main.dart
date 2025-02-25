@@ -2,7 +2,7 @@ import 'package:cinema/pages/auth/login_screen.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'services/service_provider.dart';
+import 'core/services/index.dart';
 import 'viewmodels/auth_viewmodel.dart';
 
 void main() async {

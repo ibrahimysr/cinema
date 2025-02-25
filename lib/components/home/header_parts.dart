@@ -1,5 +1,5 @@
-  part of "../components.dart";
-
+// 1. Yöntem: Builder kullanarak
+part of "../components.dart";
 
 AppBar headerParts(BuildContext context) {
   return AppBar(
@@ -7,24 +7,28 @@ AppBar headerParts(BuildContext context) {
     automaticallyImplyLeading: false,
     title: Row(
       children: [
-        IconButton(
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
+        Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          }
         ),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     const Text.rich(
+                    const Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
@@ -38,7 +42,7 @@ AppBar headerParts(BuildContext context) {
                         ],
                       ),
                     ),
-                     Text(
+                    Text(
                       "İstediğin Filmi Seç Ve İzle",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -50,15 +54,14 @@ AppBar headerParts(BuildContext context) {
                   ],
                 ),
               ),
-               SizedBox(width: context.getDynamicWidth(2)),
+              SizedBox(width: context.getDynamicWidth(2)),
               Container(
                 width: 40,
                 height: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  
                 ),
-                child: const Icon(Icons.notifications_sharp,color: Appcolor.buttonColor,),
+                child: const Icon(Icons.notifications_sharp, color: Appcolor.buttonColor,),
               ),
             ],
           ),

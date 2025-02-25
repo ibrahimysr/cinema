@@ -1,4 +1,5 @@
 import 'package:cinema/components/components.dart';
+import 'package:cinema/core/constants/auth_texts.dart';
 import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
@@ -35,32 +36,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 const SizedBox(height: 40),
                 const Text(
-                  'Kayıt Ol',
+                  AuthTexts.registerTitle,
                   style: AppTextStyles.headerLarge,
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Devam etmek için lütfen bir hesap oluşturun',
+                  AuthTexts.registerSubtitle,
                   style: AppTextStyles.caption,
                 ),
                 const SizedBox(height: 40),
                 CustomTextField(
-                  label: 'Kullanıcı Adı',
-                  hintText: 'Kullanıcı Adınızı Giriniz',
+                  label: AuthTexts.usernameLabel,
+                  hintText: AuthTexts.usernameHint,
                   controller: _usernameController,
                   prefixIcon: Icons.person_outline,
                 ),
                 const SizedBox(height: 24),
                 CustomTextField(
-                  label: 'Email',
-                  hintText: 'Emailinizi Giriniz',
+                  label: AuthTexts.emailLabel,
+                  hintText: AuthTexts.emailHint,
                   controller: _emailController,
                   prefixIcon: Icons.email_outlined,
                 ),
                 const SizedBox(height: 24),
                 CustomTextField(
-                  label: 'Şifre',
-                  hintText: 'Şifrenizi Giriniz',
+                  label: AuthTexts.passwordLabel,
+                  hintText: AuthTexts.passwordHint,
                   controller: _passwordController,
                   prefixIcon: Icons.lock_outline,
                   isPassword: true,
@@ -73,8 +74,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ), 
                   const SizedBox(height: 24),
                 CustomTextField(
-                  label: 'Şifrenizi Onaylayınız',
-                  hintText: 'Şifrenizi Tekrar Giriniz',
+                  label: AuthTexts.confirmPasswordLabel,
+                  hintText: AuthTexts.confirmPasswordHint,
                   controller: _passwordConfirmController,
                   prefixIcon: Icons.lock_outline,
                   isPassword: true,
@@ -90,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const Center(child: CircularProgressIndicator())
                 else
                   CustomButton(
-                    text: 'Kayıt Ol',
+                    text: AuthTexts.registerButton,
                     onPressed: () async {
                       try {
                         await authViewModel.register(
@@ -117,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 24),
                 Center(
                   child: Text(
-                    'Veya Diğer Yöntemler',
+                    AuthTexts.orOtherMethods,
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 14,
@@ -126,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 24),
                 CustomButton(
-                  text: 'Google İle Kayıt Ol',
+                  text: AuthTexts.googleRegister,
                   onPressed: () {
                     // Handle Google sign up
                   },
@@ -138,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 16),
                 CustomButton(
-                  text: 'Facebook İle Kayıt Ol',
+                  text: AuthTexts.facebookRegister,
                   onPressed: () {
                     // Handle Facebook sign up
                   },
