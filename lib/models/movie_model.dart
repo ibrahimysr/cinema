@@ -2,6 +2,9 @@ class Movie {
   final String poster, title, genre, synopsis;
   final double rating;
   final int duration;
+  final String year;
+  final String director;
+  final String actors;
 
   Movie({
     required this.poster,
@@ -10,45 +13,39 @@ class Movie {
     required this.synopsis,
     required this.rating,
     required this.duration,
+    required this.year,
+    required this.director,
+    required this.actors,
   });
+
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    // Runtime'ı dakikaya çevirme
+    int duration = 0;
+    if (json['Runtime'] != null && json['Runtime'] != 'N/A') {
+      final runtimeStr = json['Runtime'].toString();
+      final runtimeMatch = RegExp(r'(\d+)').firstMatch(runtimeStr);
+      if (runtimeMatch != null) {
+        duration = int.tryParse(runtimeMatch.group(1) ?? '0') ?? 0;
+      }
+    }
+
+    // IMDb puanını double'a çevirme
+    double rating = 0.0;
+    if (json['imdbRating'] != null && json['imdbRating'] != 'N/A') {
+      rating = double.tryParse(json['imdbRating']) ?? 0.0;
+    }
+
+    return Movie(
+      poster: json['Poster'] ?? '',
+      title: json['Title'] ?? '',
+      genre: json['Genre'] ?? '',
+      synopsis: json['Plot'] ?? '',
+      rating: rating,
+      duration: duration,
+      year: json['Year'] ?? '',
+      director: json['Director'] ?? '',
+      actors: json['Actors'] ?? '',
+    );
+  }
 }
 
-List<Movie> movies = [
-  Movie(
-    poster:
-        'https://rukminim2.flixcart.com/image/850/1000/jf8khow0/poster/a/u/h/small-hollywood-movie-poster-blade-runner-2049-ridley-scott-original-imaf3qvx88xenydd.jpeg?q=20&crop=false',
-    title: 'Blade Runner 2049 ',
-    genre: 'Aksiyon',
-    synopsis: synopsis,
-    rating: 9.0,
-    duration: 120,
-  ),
- 
-  Movie(
-    poster:
-        'https://www.filmsourcing.com/wp-content/uploads/2013/03/comedy-poster-tutorial-5.jpg',
-    title: ' Create the scene (and polish)',
-    genre: 'Aksiyon',
-    synopsis: synopsis,
-    rating: 8.0,
-    duration: 130,
-  ),
-  Movie(
-      poster:
-          'https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_QL75_UX380_CR0,0,380,562_.jpg',
-      title: 'Joker (2019)',
-      genre: 'Suç',
-      synopsis: synopsis,
-      rating: 8.9,
-      duration: 140),
-  Movie(
-    poster: 'https://m.media-amazon.com/images/I/A1jNECCCyUL.jpg',
-    title: 'Blue Beetle',
-    genre: 'Drama',
-    synopsis: synopsis,
-    rating: 7.5,
-    duration: 150,
-  )
-];
-const String synopsis =
-    "Sinopsis: 2147 yılında insanlık, zamanın tek para birimi olduğu distopik bir toplumda yaşıyor. Zeki ama hayal kırıklığına uğramış bir bilim adamı olan Evelyn Carter, zamanı manipüle etmenin bir yolunu keşfeder. Toplumu zamana erişimi düzenleyerek kontrol eden otoriter Zaman Bekçilerinin amansız baskısıyla karşı karşıya kalan Evelyn, kendini yüksek riskli bir kedi fare oyununun içinde bulur.\nEvelyn bu keşfini baskıcı sistemi alt üst etmek için kullanmaya çalışırken, o Zamanın dokusunu değiştirebilecek ve ezilenlerin özgürlüğünü geri kazanabilecek bir devrimi ateşlemeye çalışarak, birlikte bir aldatmaca ve tehlike labirentinde yol alırlar.\nKaosun ortasında, Evelyn kendi geçmişiyle yüzleşir ve icadının gerçek maliyetini sorgular. Zaman Tutucu, her saniyenin önemli olduğu bir dünyada güç, fedakarlık ve amansız adalet arayışı temalarını araştırır.";

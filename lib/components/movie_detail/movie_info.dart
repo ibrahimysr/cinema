@@ -2,58 +2,49 @@ part of "../components.dart";
 
 class MovieInfo extends StatelessWidget {
   final IconData icon;
-  final String name, value;
+  final String name;
+  final String value;
+
   const MovieInfo({
-    super.key,
+    Key? key,
     required this.icon,
     required this.name,
     required this.value,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 95,
-      width: 102,
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      width: 110,
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          width: 1.5,
-          color: Colors.white12,
-        ),
+        color: Colors.white10.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         children: [
-          Container(
-            width: 24,
-            height: 24,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.white.withOpacity(0.2),
-                  blurRadius: 5,
-                ),
-              ],
-            ),
-            child: Icon(icon, color: Colors.white),
+          Icon(
+            icon,
+            color: Appcolor.buttonColor,
+            size: 20,
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 4),
           Text(
             name,
             style: AppTextStyles.bodySmall.copyWith(
-              color: Colors.white.withOpacity(0.6), 
-              fontSize: 12
+              color: Colors.white60,
+              fontSize: 11,
             ),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 4),
           Text(
             value,
             style: AppTextStyles.bodySmall.copyWith(
-              fontWeight: FontWeight.bold, 
-              fontSize: 12
+              fontSize: 11,
             ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
           ),
         ],
       ),

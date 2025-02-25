@@ -3,6 +3,8 @@ import 'api/api_client.dart';
 import 'auth/auth_service.dart';
 import 'storage/storage_service.dart';
 import 'user/user_service.dart';
+import 'now_playing_movie/now_playing_movie_service.dart';
+import 'now_playing_movie/now_playing_movie_service_interface.dart';
 
 /// Uygulama genelinde kullanılacak servisleri sağlayan sınıf.
 /// Dependency Injection için kullanılır.
@@ -20,6 +22,7 @@ class ServiceProvider {
   late final AuthServiceInterface authService;
   late final UserServiceInterface userService;
   late final ApiClient apiClient;
+  late final NowPlayingMovieServiceInterface nowPlayingMovieService;
   
   /// Servisleri başlatır
   Future<void> initialize() async {
@@ -44,6 +47,9 @@ class ServiceProvider {
       storageService: storageService,
       client: client,
     );
+    
+    // Vizyondaki filmler servisi
+    nowPlayingMovieService = NowPlayingMovieService(client: client);
   }
   
   /// Servisleri temizler

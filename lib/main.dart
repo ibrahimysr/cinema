@@ -1,5 +1,6 @@
 import 'package:cinema/pages/auth/login_screen.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
+import 'package:cinema/viewmodels/movie_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/services/index.dart';
@@ -20,15 +21,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AuthViewModel(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => MovieViewModel()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const AuthCheckScreen(),
+        home: const CinemaMainScreen(),
       ),
     );
   }
