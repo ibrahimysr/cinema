@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/user_model.dart';
@@ -44,9 +45,9 @@ class AuthService {
 
   Future<Map<String, dynamic>> register(String name, String email, String password, String passwordConfirm) async {
     try {
-      print('Register isteği gönderiliyor:');
-      print('URL: $baseUrl/register');
-      print('Body: ${jsonEncode({
+      log('Register isteği gönderiliyor:');
+      log('URL: $baseUrl/register');
+      log('Body: ${jsonEncode({
         'name': name,
         'email': email,
         'password': password,
@@ -69,8 +70,8 @@ class AuthService {
         }),
       );
 
-      print('Status Code: ${response.statusCode}');
-      print('Response Body: ${response.body}');
+      log('Status Code: ${response.statusCode}');
+      log('Response Body: ${response.body}');
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         // Kayıt başarılı olduktan sonra otomatik login yap
@@ -80,7 +81,7 @@ class AuthService {
         throw Exception(errorData['message'] ?? errorData.toString() ?? 'Kayıt başarısız');
       }
     } catch (e) {
-      print('Hata detayı: $e');
+      log('Hata detayı: $e');
       throw Exception('Kayıt sırasında hata oluştu: $e');
     }
   }
@@ -122,10 +123,10 @@ class AuthService {
       );
 
       if (response.statusCode != 200) {
-        print('Logout API Hatası: ${response.body}');
+        log('Logout API Hatası: ${response.body}');
       }
     } catch (e) {
-      print('Logout sırasında hata oluştu: $e');
+      log('Logout sırasında hata oluştu: $e');
     } finally {
       // API çağrısı başarısız olsa bile local verileri temizle
       final box = await Hive.openBox(tokenBoxName);

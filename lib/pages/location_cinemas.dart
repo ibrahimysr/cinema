@@ -1,4 +1,5 @@
-import 'package:cinema/const.dart';
+import 'package:cinema/core/theme/color.dart';
+import 'package:cinema/core/theme/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -23,7 +24,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
       'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfMwUwnO0Z2IYt162CKjX3eBifprCorgeR_w&s'
     },
     {
-      'name': '24 Nigh Cinema',
+      'name': 'Forum Sinema',
       'location': LatLng(32.7257, -117.1611),
       'distance': '1.24km',
       'rating': 4.5,
@@ -34,7 +35,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appBackgroundColor,
+      backgroundColor: Appcolor.appBackgroundColor,
       body: Stack(
         children: [
           FlutterMap(
@@ -44,13 +45,13 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
               initialZoom: 13.0,
               minZoom: 10,
               maxZoom: 18,
-              backgroundColor: appBackgroundColor, // Harita arka plan rengi
+              backgroundColor: Appcolor.appBackgroundColor, // Harita arka plan rengi
             ),
             children: [
               TileLayer(
                 urlTemplate: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
                 userAgentPackageName: 'com.example.app',
-                backgroundColor: appBackgroundColor,
+                backgroundColor: Appcolor.appBackgroundColor,
                 subdomains: const ['a', 'b', 'c', 'd'],
               ),
               MarkerLayer(
@@ -65,7 +66,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.my_location, color: appBackgroundColor, size: 20),
+                      child: const Icon(Icons.my_location, color: Appcolor.appBackgroundColor, size: 20),
                     ),
                   ),
                   // Sinema marker'ları
@@ -162,7 +163,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
               height: MediaQuery.of(context).size.height * 0.32,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: appBackgroundColor.withOpacity(0.9),
+                color: Appcolor.appBackgroundColor.withOpacity(0.9),
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: Column(
@@ -195,7 +196,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
                           margin: const EdgeInsets.only(right: 16),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            color: appBackgroundColor,
+                            color: Appcolor.appBackgroundColor,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -273,7 +274,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
         padding: const EdgeInsets.only(bottom: 200),
         child: FloatingActionButton(
           backgroundColor: Colors.white,
-          child: const Icon(Icons.gps_fixed, color: appBackgroundColor),
+          child: const Icon(Icons.gps_fixed, color: Appcolor.appBackgroundColor),
           onPressed: () {
             // Kullanıcı konumuna git
           },
@@ -288,7 +289,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: const BoxDecoration(
-          color: appBackgroundColor,
+          color: Appcolor.appBackgroundColor,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         padding: const EdgeInsets.all(16),

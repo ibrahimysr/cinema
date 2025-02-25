@@ -1,9 +1,8 @@
-import 'package:cinema/const.dart';
+import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/pages/location_cinemas.dart';
 import 'package:cinema/pages/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'home/home_page_cinema.dart';
 
 class CinemaMainScreen extends StatefulWidget {
@@ -37,7 +36,7 @@ class _CinemaMainScreenState extends State<CinemaMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appBackgroundColor,
+      backgroundColor: Appcolor.appBackgroundColor,
       bottomNavigationBar: SizedBox(
         height: 100,
         child: Row(

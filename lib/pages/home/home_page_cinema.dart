@@ -1,11 +1,11 @@
 import 'dart:math';
-import 'package:cinema/const.dart';
+import 'package:cinema/components/components.dart';
 import 'package:cinema/core/extension/context_extension.dart';
-import 'package:cinema/models/category_model.dart';
+import 'package:cinema/core/theme/color.dart';
+import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/pages/detail_page.dart';
 import 'package:flutter/material.dart';
-
 
 class HomePageCinema extends StatefulWidget {
   const HomePageCinema({super.key});
@@ -39,21 +39,21 @@ class _HomePageCinemaState extends State<HomePageCinema> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appBackgroundColor,
-      appBar: headerParts(),
+      backgroundColor: Appcolor.appBackgroundColor,
+      appBar: headerParts(context),
       body: Column(
         children: [
-           SizedBox(height: context.getDynamicHeight(4)),
-          searchField(),
-           SizedBox(height: context.getDynamicHeight(4)),
+          SizedBox(height: context.getDynamicHeight(4)),
+          searchField(context),
+          SizedBox(height: context.getDynamicHeight(4)),
           Padding(
-            padding:  context.paddingNormalHorizontal,
+            padding: context.paddingNormalHorizontal,
             child: Column(
               children: [
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Kategoriler",
                       style: AppTextStyles.headerMedium,
                     ),
@@ -64,18 +64,18 @@ class _HomePageCinemaState extends State<HomePageCinema> {
                           style: AppTextStyles.buttonText,
                         ),
                         SizedBox(width: context.getDynamicWidth(2)),
-                        Icon(
+                        const Icon(
                           Icons.arrow_forward_ios,
-                          color: buttonColor,
+                          color: Appcolor.buttonColor,
                           size: 15,
                         ),
                       ],
                     )
                   ],
                 ),
-                 SizedBox(height: context.getDynamicHeight(2)),
-                categoryItems(),
-                 SizedBox(height: context.getDynamicHeight(3)),
+                SizedBox(height: context.getDynamicHeight(2)),
+                categoryItems(context),
+                SizedBox(height: context.getDynamicHeight(3)),
               ],
             ),
           ),
@@ -83,14 +83,14 @@ class _HomePageCinemaState extends State<HomePageCinema> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Padding(
+                Padding(
                   padding: context.paddingNormalHorizontal,
-                  child: Text(
+                  child: const Text(
                     "Vizyondaki Filmler",
                     style: AppTextStyles.headerLarge,
                   ),
                 ),
-                 SizedBox(height: context.getDynamicHeight(2)),
+                SizedBox(height: context.getDynamicHeight(2)),
                 Expanded(
                   child: Stack(
                     alignment: Alignment.center,
@@ -163,7 +163,7 @@ class _HomePageCinemaState extends State<HomePageCinema> {
                                 height: 10,
                                 decoration: BoxDecoration(
                                   color: currentIndex == index
-                                      ? buttonColor
+                                      ? Appcolor.buttonColor
                                       : Colors.white24,
                                   borderRadius: BorderRadius.circular(15),
                                 ),
@@ -180,130 +180,4 @@ class _HomePageCinemaState extends State<HomePageCinema> {
       ),
     );
   }
-
-  Row categoryItems() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: List.generate(
-        categories.length,
-        (index) => Column(
-          children: [
-            Container(
-              padding: context.paddingNormal,
-              decoration: BoxDecoration(
-                color: Colors.white10.withOpacity(0.05),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Image.asset(
-                categories[index].emoji,
-                fit: BoxFit.cover,
-                height: 30,
-                width: 30,
-              ),
-            ),
-             SizedBox(height: context.getDynamicHeight(1)),
-            Text(
-              categories[index].name,
-              style: AppTextStyles.bodyMedium,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Padding searchField() {
-    return Padding(
-      padding:  context.paddingNormalHorizontal,
-      child: TextField(
-        decoration: InputDecoration(
-          contentPadding: 
-          
-          context.paddingNormalVertical,
-          filled: true,
-          fillColor: Colors.white.withOpacity(0.05),
-          hintText: "Search",
-          hintStyle: const TextStyle(
-            color: Colors.white54,
-          ),
-          prefixIcon: const Icon(
-            Icons.search,
-            size: 35,
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(27),
-            borderSide: BorderSide.none,
-          ),
-        ),
-      ),
-    );
-  }
-
-AppBar headerParts() {
-  return AppBar(
-    backgroundColor: appBackgroundColor,
-    automaticallyImplyLeading: false,
-    title: Row(
-      children: [
-        // Drawer Button
-        IconButton(
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-        ),
-        // Main Content
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                     Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Hoş geldin İbrahim ",
-                            style: AppTextStyles.caption,
-                          ),
-                          TextSpan(
-                            text: "👋",
-                            style: AppTextStyles.bodyMedium,
-                          ),
-                        ],
-                      ),
-                    ),
-                     Text(
-                      "İstediğin Filmi Seç Ve İzle",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.bodyLarge.copyWith(
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 1,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-               SizedBox(width: context.getDynamicWidth(2)),
-              Container(
-                width: 40,
-                height: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  
-                ),
-                child: Icon(Icons.notifications_sharp,color: buttonColor,),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
-}}
+}

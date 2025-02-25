@@ -1,5 +1,7 @@
 import 'package:cinema/components/components.dart';
 import 'package:cinema/const.dart';
+import 'package:cinema/core/theme/color.dart';
+import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/pages/reservation_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,7 @@ class MovieDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appBackgroundColor,
+      backgroundColor: Appcolor.appBackgroundColor,
       appBar: AppBar(
         forceMaterialTransparency: true,
         foregroundColor: Colors.white,

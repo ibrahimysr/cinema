@@ -1,5 +1,5 @@
 import 'package:cinema/components/components.dart';
-import 'package:cinema/const.dart';
+import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/pages/auth/register_screen.dart';
 import 'package:cinema/pages/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text(
                       'Şifremi Unuttum',
                       style: TextStyle(
-                        color: buttonColor,
+                        color: Appcolor.buttonColor,
                         fontSize: 14,
                       ),
                     ),
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text(
                       'Kayıt Ol',
                       style: TextStyle(
-                        color: buttonColor,
+                        color: Appcolor.buttonColor,
                         fontSize: 14,
                       ),
                     ),
@@ -134,8 +134,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 24),
                 Row(
                   children: [
-                    Expanded(
-                      child: Divider(color: buttonColor, thickness: 2),
+                    const Expanded(
+                      child: Divider(color: Appcolor.buttonColor, thickness: 2),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -147,8 +147,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Divider(color: buttonColor, thickness: 2),
+                    const Expanded(
+                      child: Divider(color: Appcolor.buttonColor, thickness: 2),
                     ),
                   ],
                 ),

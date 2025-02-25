@@ -40,7 +40,7 @@ class CustomTextField extends StatelessWidget {
             fillColor: Colors.grey[900],
             prefixIcon: Icon(
               prefixIcon,
-              color: buttonColor,
+              color: Appcolor.buttonColor,
             ),
             suffixIcon: isPassword
                 ? IconButton(

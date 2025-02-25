@@ -1,6 +1,5 @@
 import 'package:cinema/components/components.dart';
-import 'package:cinema/const.dart';
-import 'package:cinema/pages/auth/login_screen.dart';
+import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/pages/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,12 +34,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-                Text(
+                const Text(
                   'Kayıt Ol',
                   style: AppTextStyles.headerLarge,
                 ),
                 const SizedBox(height: 8),
-                Text(
+                const Text(
                   'Devam etmek için lütfen bir hesap oluşturun',
                   style: AppTextStyles.caption,
                 ),

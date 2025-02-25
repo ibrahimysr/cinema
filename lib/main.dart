@@ -2,7 +2,6 @@ import 'package:cinema/pages/auth/login_screen.dart';
 import 'package:cinema/pages/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'services/auth_service.dart';
 import 'viewmodels/auth_viewmodel.dart';
 

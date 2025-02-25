@@ -1,4 +1,4 @@
-import 'package:cinema/const.dart';
+import 'package:cinema/core/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/auth_viewmodel.dart';
@@ -11,9 +11,9 @@ class AccountDetailsScreen extends StatelessWidget {
     final user = context.watch<AuthViewModel>().user;
 
     return Scaffold(
-      backgroundColor: appBackgroundColor,
+      backgroundColor: Appcolor.appBackgroundColor,
       appBar: AppBar(
-        backgroundColor: appBackgroundColor,
+        backgroundColor: Appcolor.appBackgroundColor,
         title: const Text(
           'Hesap Bilgileri',
           style: TextStyle(
@@ -71,7 +71,7 @@ class AccountDetailsScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: grey,
+        color: Appcolor.grey,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -79,7 +79,7 @@ class AccountDetailsScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: buttonColor, size: 20),
+              Icon(icon, color: Appcolor.buttonColor, size: 20),
               const SizedBox(width: 8),
               Text(
                 title,

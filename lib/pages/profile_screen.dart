@@ -1,5 +1,5 @@
 import 'package:cinema/components/components.dart';
-import 'package:cinema/const.dart';
+import 'package:cinema/core/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/auth_viewmodel.dart';
@@ -28,9 +28,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final user = authViewModel.user;
 
     return Scaffold(
-      backgroundColor: appBackgroundColor,
+      backgroundColor: Appcolor.appBackgroundColor,
       appBar: AppBar(
-        backgroundColor: appBackgroundColor,
+        backgroundColor: Appcolor.appBackgroundColor,
         title: const Text(
           'Profil',
           style: TextStyle(
@@ -41,14 +41,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh, color: buttonColor),
+            icon: const Icon(Icons.refresh, color: Appcolor.buttonColor),
             onPressed: () {
               // Profil bilgilerini yenile
               authViewModel.refreshProfile();
             },
           ),
           IconButton(
-            icon: const Icon(Icons.edit, color: buttonColor),
+            icon: const Icon(Icons.edit, color: Appcolor.buttonColor),
             onPressed: () {
               // Profil düzenleme sayfasına git
             },
@@ -64,10 +64,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                // Profil Fotoğrafı
                 CircleAvatar(
                   radius: 50,
-                  backgroundColor: buttonColor,
+                  backgroundColor: Appcolor.buttonColor,
                   child: Text(
                     user?.name.substring(0, 1).toUpperCase() ?? 'U',
                     style: const TextStyle(
@@ -139,7 +138,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 const SizedBox(height: 40),
-                // Çıkış Yap Butonu
                 if (authViewModel.isLoading)
                   const Center(child: CircularProgressIndicator())
                 else

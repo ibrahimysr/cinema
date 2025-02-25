@@ -1,5 +1,6 @@
 import 'package:cinema/components/components.dart';
-import 'package:cinema/const.dart';
+import 'package:cinema/core/theme/color.dart';
+import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/pages/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -45,7 +46,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
     final spacing = containerSize * 0.3; 
     final aisleSpacing = containerSize * 0.8; 
     return Scaffold(
-      backgroundColor: appBackgroundColor,
+      backgroundColor: Appcolor.appBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
@@ -105,8 +106,8 @@ class _ReservationScreenState extends State<ReservationScreen> {
                                       color: reservedSeats.contains(seatNum)
                                           ? Colors.white
                                           : selectedSeats.contains(seatNum)
-                                              ? buttonColor
-                                              : grey,
+                                              ? Appcolor.buttonColor
+                                              : Appcolor.grey,
                                       borderRadius: BorderRadius.circular(containerSize * 0.2),
                                     ),
                                     child: Center(
@@ -142,12 +143,12 @@ class _ReservationScreenState extends State<ReservationScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SeatStatus(
-                  color: grey,
+                  color: Appcolor.grey,
                   status: 'Mevcut',
                 ),
                 SizedBox(width: 10),
                 SeatStatus(
-                  color: buttonColor,
+                  color: Appcolor.buttonColor,
                   status: 'Seçildi',
                 ),
                 SizedBox(width: 10),
@@ -213,7 +214,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                                       color: DateFormat('d/M/y')
                                                   .format(selectedTime) ==
                                               DateFormat('d/M/y').format(items[index])
-                                          ? appBackgroundColor
+                                          ? Appcolor.appBackgroundColor
                                           : Colors.white,
                                     ),
                                   ),
@@ -249,14 +250,14 @@ class _ReservationScreenState extends State<ReservationScreen> {
                             margin: const EdgeInsets.only(right: 20),
                             padding: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                              color: grey,
+                              color: Appcolor.grey,
                               border: Border.all(
                                   width: 2,
                                   color: DateFormat('HH:mm')
                                               .format(selectedTime)
                                               .toString() ==
                                           availableTime[index]
-                                      ? buttonColor
+                                      ? Appcolor.buttonColor
                                       : Colors.transparent),
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -267,7 +268,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                                             .format(selectedTime)
                                             .toString() ==
                                         availableTime[index]
-                                    ? buttonColor
+                                    ? Appcolor.buttonColor
                                     : Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -309,7 +310,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                             child: Container(
                               height: 60,
                               decoration: BoxDecoration(
-                                color: buttonColor,
+                                color: Appcolor.buttonColor,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: const Center(
@@ -355,7 +356,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        buttonColor.withOpacity(0.3),
+                        Appcolor.buttonColor.withOpacity(0.3),
                         Colors.transparent
                       ],
                       stops: const [
@@ -377,7 +378,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 child: Container(
                   height: 50,
                   width: double.infinity,
-                  color: buttonColor,
+                  color: Appcolor.buttonColor,
                 ),
               ),
             ),

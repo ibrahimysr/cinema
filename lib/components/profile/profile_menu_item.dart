@@ -13,12 +13,12 @@ Widget buildMenuItem({
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
           decoration: BoxDecoration(
-            color: grey,
+            color: Appcolor.grey,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
             children: [
-              Icon(icon, color: buttonColor),
+              Icon(icon, color: Appcolor.buttonColor),
               const SizedBox(width: 16),
               Text(
                 title,
