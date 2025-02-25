@@ -1,28 +1,38 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import 'package:hive_flutter/hive_flutter.dart';
-import '../models/user_model.dart';
+import 'base_service.dart';
+import 'storage_service.dart';
 
-class AuthService {
-  static const String baseUrl = 'http://10.10.27.29:8000/api';  // Android Emulator için localhost
-  static const String tokenBoxName = 'auth_box';
+abstract class AuthServiceInterface {
+  Future<Map<String, dynamic>> login(String email, String password);
+  Future<Map<String, dynamic>> register(String name, String email, String password, String passwordConfirm);
+  Future<void> logout();
+  Future<String?> getToken();
+}
+
+class AuthService extends BaseService implements AuthServiceInterface {
   static const String tokenKey = 'access_token';
   static const String userKey = 'user_data';
-
-  Future<void> initHive() async {
-    await Hive.initFlutter();
-    await Hive.openBox(tokenBoxName);
-  }
-
+  
+  final StorageService _storageService;
+  final http.Client _client;
+  
+  AuthService({
+    required StorageService storageService,
+    http.Client? client,
+  }) : _storageService = storageService,
+       _client = client ?? http.Client();
+  
+  @override
+  http.Client get httpClient => _client;
+  
+  @override
   Future<Map<String, dynamic>> login(String email, String password) async {
     try {
-      final response = await http.post(
-        Uri.parse('$baseUrl/login'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
+      final response = await httpClient.post(
+        buildUrl('login'),
+        headers: headers,
         body: jsonEncode({
           'email': email,
           'password': password,
@@ -38,28 +48,20 @@ class AuthService {
         throw Exception(errorData['message'] ?? 'Giriş başarısız');
       }
     } catch (e) {
+      log('Login hatası: $e');
       throw Exception('Giriş sırasında hata oluştu: $e');
     }
   }
 
+  @override
   Future<Map<String, dynamic>> register(String name, String email, String password, String passwordConfirm) async {
     try {
       log('Register isteği gönderiliyor:');
-      log('URL: $baseUrl/register');
-      log('Body: ${jsonEncode({
-        'name': name,
-        'email': email,
-        'password': password,
-        'password_confirmation': passwordConfirm,
-        'role_id': 1
-      })}');
-
-      final response = await http.post(
-        Uri.parse('$baseUrl/register'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
+      log('URL: ${buildUrl('register')}');
+      
+      final response = await httpClient.post(
+        buildUrl('register'),
+        headers: headers,
         body: jsonEncode({
           'name': name,
           'email': email,
@@ -86,25 +88,16 @@ class AuthService {
   }
 
   Future<void> _saveAuthData(Map<String, dynamic> data) async {
-    final box = await Hive.openBox(tokenBoxName);
-    await box.put(tokenKey, data['access_token']);
-    await box.put(userKey, json.encode(data['user']));
+    await _storageService.saveData(tokenKey, data['access_token']);
+    await _storageService.saveData(userKey, json.encode(data['user']));
   }
 
+  @override
   Future<String?> getToken() async {
-    final box = await Hive.openBox(tokenBoxName);
-    return box.get(tokenKey);
+    return await _storageService.getData<String>(tokenKey);
   }
 
-  Future<UserModel?> getUser() async {
-    final box = await Hive.openBox(tokenBoxName);
-    final userStr = box.get(userKey);
-    if (userStr != null) {
-      return UserModel.fromJson(json.decode(userStr));
-    }
-    return null;
-  }
-
+  @override
   Future<void> logout() async {
     try {
       final token = await getToken();
@@ -112,13 +105,9 @@ class AuthService {
         throw Exception('Token bulunamadı');
       }
 
-      final response = await http.post(
-        Uri.parse('$baseUrl/logout'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
+      final response = await httpClient.post(
+        buildUrl('logout'),
+        headers: getAuthHeaders(token),
       );
 
       if (response.statusCode != 200) {
@@ -128,40 +117,8 @@ class AuthService {
       log('Logout sırasında hata oluştu: $e');
     } finally {
       // API çağrısı başarısız olsa bile local verileri temizle
-      final box = await Hive.openBox(tokenBoxName);
-      await box.delete(tokenKey);
-      await box.delete(userKey);
-    }
-  }
-
-  Future<UserModel> getProfile() async {
-    final token = await getToken();
-    if (token == null) {
-      throw Exception('Token bulunamadı');
-    }
-
-    try {
-      final response = await http.get(
-        Uri.parse('$baseUrl/me'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      );
-
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> data = json.decode(response.body);
-        final user = UserModel.fromJson(data);
-        // Kullanıcı bilgilerini güncelle
-        final box = await Hive.openBox(tokenBoxName);
-        await box.put(userKey, json.encode(data));
-        return user;
-      } else {
-        throw Exception('Profil bilgileri alınamadı: ${response.body}');
-      }
-    } catch (e) {
-      throw Exception('Profil bilgileri alınırken hata oluştu: $e');
+      await _storageService.removeData(tokenKey);
+      await _storageService.removeData(userKey);
     }
   }
 } 

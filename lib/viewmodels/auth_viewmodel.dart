@@ -1,12 +1,24 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import '../models/user_model.dart';
 import '../services/auth_service.dart';
+import '../services/service_provider.dart';
+import '../services/user_service.dart';
 
 class AuthViewModel extends ChangeNotifier {
-  final AuthService _authService = AuthService();
+  final AuthServiceInterface _authService;
+  final UserServiceInterface _userService;
+  
   UserModel? _user;
   String? _token;
   bool _isLoading = false;
+
+  AuthViewModel({
+    AuthServiceInterface? authService,
+    UserServiceInterface? userService,
+  }) : _authService = authService ?? ServiceProvider().authService,
+       _userService = userService ?? ServiceProvider().userService;
 
   UserModel? get user => _user;
   String? get token => _token;
@@ -22,11 +34,11 @@ class AuthViewModel extends ChangeNotifier {
 
   Future<void> refreshProfile() async {
     try {
-      _user = await _authService.getProfile();
+      _user = await _userService.getProfile(_token);
       notifyListeners();
     } catch (e) {
       // Profil bilgileri alınamazsa local'den almayı dene
-      _user = await _authService.getUser();
+      _user = await _userService.getUser();
       notifyListeners();
     }
   }
@@ -74,7 +86,7 @@ class AuthViewModel extends ChangeNotifier {
       _token = null;
       _user = null;
     } catch (e) {
-      print('Logout sırasında hata oluştu: $e');
+      log('Logout sırasında hata oluştu: $e');
       // Hata olsa bile local verileri temizle
       _token = null;
       _user = null;

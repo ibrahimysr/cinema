@@ -132,11 +132,11 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(color: Colors.grey[800]!),
                     ),
-                    child: Row(
+                    child: const Row(
                       children: [
-                        const Icon(Icons.search, color: Colors.white),
-                        const SizedBox(width: 8),
-                        const Expanded(
+                         Icon(Icons.search, color: Colors.white),
+                         SizedBox(width: 8),
+                         Expanded(
                           child: TextField(
                             style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(

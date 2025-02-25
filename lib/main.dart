@@ -2,13 +2,16 @@ import 'package:cinema/pages/auth/login_screen.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'services/auth_service.dart';
+import 'services/service_provider.dart';
 import 'viewmodels/auth_viewmodel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final authService = AuthService();
-  await authService.initHive();
+  
+  // Servisleri başlat
+  final serviceProvider = ServiceProvider();
+  await serviceProvider.initialize();
+  
   runApp(const MyApp());
 }
 
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const CinemaMainScreen() //AuthCheckScreen(),
+        home: const AuthCheckScreen(),
       ),
     );
   }
