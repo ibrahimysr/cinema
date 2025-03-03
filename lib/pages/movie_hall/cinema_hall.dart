@@ -1,4 +1,3 @@
-// cinema_halls_screen.dart
 import 'package:cinema/components/components.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/viewmodels/cinema_hall_viewmodel.dart';
@@ -19,16 +18,13 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 800),
     );
-
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
-
     _slideAnimation = Tween<Offset>(begin: Offset(0, 0.5), end: Offset.zero).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
     );
@@ -69,57 +65,17 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-          body: _buildBody(viewModel),
+          body: viewModel.isLoading
+              ? CinemaHallsLoader()
+              : viewModel.error != null
+                  ? CinemaHallsError(error: viewModel.error!)
+                  : CinemaHallsContent(
+                      viewModel: viewModel,
+                      fadeAnimation: _fadeAnimation,
+                      slideAnimation: _slideAnimation,
+                    ),
         );
       },
-    );
-  }
-
-  Widget _buildBody(CinemaHallsViewModel viewModel) {
-    if (viewModel.isLoading || viewModel.error != null) {
-      return CinemaHallsStatus(isLoading: viewModel.isLoading, error: viewModel.error);
-    }
-
-    if (viewModel.cinema == null) {
-      return Center(
-        child: Text(
-          'Sinema bilgisi bulunamadı',
-          style: TextStyle(color: Appcolor.white),
-        ),
-      );
-    }
-
-    return FadeTransition(
-      opacity: _fadeAnimation,
-      child: SlideTransition(
-        position: _slideAnimation,
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Appcolor.appBackgroundColor, Appcolor.darkGrey],
-            ),
-          ),
-          child: CustomScrollView(
-            physics: BouncingScrollPhysics(),
-            slivers: [
-              SliverToBoxAdapter(child: CinemaHallsHeader(cinema: viewModel.cinema!)),
-              CinemaHallsList(halls: viewModel.cinema!.halls),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CinemaHallsScreenProvider extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => CinemaHallsViewModel(),
-      child: CinemaHallsScreen(),
     );
   }
 }

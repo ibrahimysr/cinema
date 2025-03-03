@@ -1,10 +1,10 @@
 part of "../components.dart";
 
 
-class CinemaHallsHeader extends StatelessWidget {
+class CinemaHeader extends StatelessWidget {
   final CinemaSalon cinema;
 
-  const CinemaHallsHeader({required this.cinema});
+  const CinemaHeader({required this.cinema});
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,7 @@ class CinemaHallsHeader extends StatelessWidget {
                     SizedBox(width: 4),
                     Text(
                       '4.5',
-                      style: TextStyle(
-                        color: Appcolor.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: TextStyle(color: Appcolor.white, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -51,62 +48,23 @@ class CinemaHallsHeader extends StatelessWidget {
             ],
           ),
           SizedBox(height: 20),
-          _buildInfoItem(Icons.location_on_outlined, cinema.address),
-          _buildInfoItem(Icons.phone_outlined, cinema.phone),
-          _buildInfoItem(Icons.email_outlined, cinema.email),
+          InfoItem(icon: Icons.location_on_outlined, text: cinema.address),
+          InfoItem(icon: Icons.phone_outlined, text: cinema.phone),
+          InfoItem(icon: Icons.email_outlined, text: cinema.email),
           SizedBox(height: 24),
           Wrap(
             spacing: 10,
             runSpacing: 10,
             children: [
-              _buildFeatureChip('Otopark'),
-              _buildFeatureChip('Cafe'),
-              _buildFeatureChip('WiFi'),
-              _buildFeatureChip('Engelli Erişimi'),
+              FeatureChip(label: 'Otopark'),
+              FeatureChip(label: 'Cafe'),
+              FeatureChip(label: 'WiFi'),
+              FeatureChip(label: 'Engelli Erişimi'),
             ],
           ),
           SizedBox(height: 20),
           Divider(color: Appcolor.grey.withOpacity(0.5), thickness: 1),
         ],
-      ),
-    );
-  }
-
-  Widget _buildInfoItem(IconData icon, String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(icon, color: Appcolor.buttonColor, size: 18),
-          SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: Appcolor.white.withOpacity(0.8),
-                fontSize: 14,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFeatureChip(String label) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: Appcolor.grey,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: Appcolor.white.withOpacity(0.9),
-          fontSize: 12,
-        ),
       ),
     );
   }

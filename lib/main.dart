@@ -5,6 +5,7 @@ import 'package:cinema/pages/auth/login_screen.dart';
 import 'package:cinema/pages/home/home_page_cinema.dart';
 import 'package:cinema/viewmodels/all_movies_viewmodel.dart';
 import 'package:cinema/viewmodels/auth_viewmodel.dart';
+import 'package:cinema/viewmodels/cinema_hall_viewmodel.dart';
 import 'package:cinema/viewmodels/movie_viewmodel.dart';
 import 'package:cinema/viewmodels/film_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,9 @@ class MyApp extends StatelessWidget {
           create: (_) => AllMoviesViewModel(),
         ),
         ChangeNotifierProvider(
-          create: (_) => FilmViewModel(),
-        ),
+          create: (_) => FilmViewModel(),), 
+        ChangeNotifierProvider(
+      create: (context) => CinemaHallsViewModel(),)
       ],
       child: MaterialApp(
         title: 'Cinema App',

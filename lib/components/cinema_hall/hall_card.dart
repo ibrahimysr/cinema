@@ -1,63 +1,12 @@
 part of "../components.dart";
 
-class CinemaHallsList extends StatelessWidget {
-  final List<Hall> halls;
+class HallCard extends StatelessWidget {
+  final Hall hall;
 
-  const CinemaHallsList({required this.halls});
+  const HallCard({required this.hall});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
-          child: Row(
-            children: [
-              Container(
-                width: 4,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Appcolor.buttonColor,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              SizedBox(width: 8),
-              Text(
-                'Salonlar',
-                style: TextStyle(
-                  color: Appcolor.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-        SliverPadding(
-          padding: EdgeInsets.fromLTRB(16, 0, 16, 24),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return AnimationConfiguration.staggeredList(
-                  position: index,
-                  duration: const Duration(milliseconds: 500),
-                  child: SlideAnimation(
-                    verticalOffset: 50.0,
-                    child: FadeInAnimation(
-                      child: _buildHallCard(context, halls[index]),
-                    ),
-                  ),
-                );
-              },
-              childCount: halls.length,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildHallCard(BuildContext context, Hall hall) {
     return Container(
       margin: EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -122,11 +71,11 @@ class CinemaHallsList extends StatelessWidget {
                       SizedBox(height: 6),
                       Row(
                         children: [
-                          _buildHallFeature(Icons.hd, 'HD'),
+                          HallFeature(icon: Icons.hd, label: 'HD'),
                           SizedBox(width: 12),
-                          _buildHallFeature(Icons.surround_sound, 'Dolby'),
+                          HallFeature(icon: Icons.surround_sound, label: 'Dolby'),
                           SizedBox(width: 12),
-                          _buildHallFeature(Icons.air, 'Klima'),
+                          HallFeature(icon: Icons.air, label: 'Klima'),
                         ],
                       ),
                     ],
@@ -138,22 +87,6 @@ class CinemaHallsList extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildHallFeature(IconData icon, String label) {
-    return Row(
-      children: [
-        Icon(icon, size: 14, color: Appcolor.buttonColor),
-        SizedBox(width: 4),
-        Text(
-          label,
-          style: TextStyle(
-            color: Appcolor.white.withOpacity(0.6),
-            fontSize: 12,
-          ),
-        ),
-      ],
     );
   }
 }

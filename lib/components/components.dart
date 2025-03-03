@@ -11,6 +11,7 @@ import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/pages/category/movies_category_screen.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:cinema/pages/movie_detail/movie_detail_screen.dart';
+import 'package:cinema/pages/movie_hall/cinema_hall.dart';
 import 'package:cinema/pages/reservation/reservation_screen.dart';
 import 'package:cinema/viewmodels/all_movies_viewmodel.dart';
 import 'package:cinema/viewmodels/cinema_hall_viewmodel.dart';
@@ -62,7 +63,13 @@ part "city_selector/city_selector_header.dart";
 
 //cinema hall 
 
-part "cinema_hall/cinema_halls_header.dart"; 
-part "cinema_hall/cinema_halls_list.dart"; 
-part "cinema_hall/cinema_halls_status.dart";
+part "cinema_hall/cinema_halls_loader.dart";
+part "cinema_hall/cinema_halls_error.dart";
+part "cinema_hall/cinema_halls_content.dart";
+part "cinema_hall/cinema_header.dart";
+part "cinema_hall/info_item.dart";
+part "cinema_hall/feature_chip.dart";
+part "cinema_hall/hall_card.dart";
+part "cinema_hall/hall_feature.dart";
+part "cinema_hall/cinema_halls_screen_provider.dart";
 
