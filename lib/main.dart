@@ -1,3 +1,4 @@
+import 'package:cinema/pages/city_selector/city_selector.dart';
 import 'package:cinema/core/services/service_provider.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/pages/auth/login_screen.dart';
@@ -49,15 +50,15 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: 'Poppins',
         ),
-        home: Consumer<AuthViewModel>(
-          builder: (context, authViewModel, child) {
-            if (authViewModel.isLoggedIn) {
-              return const HomePageCinema();
-            } else {
-              return const LoginScreen();
-            }
-          },
-        ),
+        home:  CitySelector(), //Consumer<AuthViewModel>(
+        //   builder: (context, authViewModel, child) {
+        //     if (authViewModel.isLoggedIn) {
+        //       return const HomePageCinema();
+        //     } else {
+        //       return const HomePageCinema();
+        //     }
+        //   },
+        // ),
       ),
     );
   }
@@ -84,7 +85,7 @@ class _AuthCheckScreenState extends State<AuthCheckScreen> {
     if (mounted) {
       if (authViewModel.isLoggedIn) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomePageCinema()),
+          MaterialPageRoute(builder: (_) =>  HomePageCinema()),
         );
       } else {
         Navigator.of(context).pushReplacement(

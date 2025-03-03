@@ -4,6 +4,7 @@ import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/core/constants/format_time.dart';
 import 'package:cinema/models/movie_model.dart';
+import 'package:cinema/pages/movie_hall/cinema_hall.dart';
 import 'package:cinema/pages/reservation/reservation_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -226,7 +227,7 @@ class MovieDetailScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const ReservationScreen(),
+                      builder: (_) =>  CinemaHallsScreen(),
                     ),
                   );
                 },

@@ -25,5 +25,8 @@ export 'all_movies/all_movies_service_interface.dart';
 export 'movie/movie_details_service.dart';
 export 'movie/movie_details_service_interface.dart';
 
+//sinema salonları servisi 
+export 'cinema_hall/cinema_hall_service.dart';
+
 // Service Provider
 export 'service_provider.dart'; 

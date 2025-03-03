@@ -1,14 +1,23 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
+import 'package:cinema/models/cinema.dart';
+import 'package:cinema/models/cinema_salon.dart';
+import 'package:cinema/models/city.dart';
 import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/pages/category/movies_category_screen.dart';
+import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:cinema/pages/movie_detail/movie_detail_screen.dart';
+import 'package:cinema/pages/reservation/reservation_screen.dart';
 import 'package:cinema/viewmodels/all_movies_viewmodel.dart';
+import 'package:cinema/viewmodels/cinema_hall_viewmodel.dart';
+import 'package:cinema/viewmodels/city_selector_viewmodel.dart';
 import 'package:cinema/viewmodels/movie_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -44,4 +53,16 @@ part "movie_detail/movie_info.dart";
 // reservation  
 part "reservation/seat_status.dart";
 part "reservation/wlcomeborder.dart";
+
+//city selector 
+
+part "city_selector/cinemas_list.dart"; 
+part "city_selector/city_dropdown.dart"; 
+part "city_selector/city_selector_header.dart";
+
+//cinema hall 
+
+part "cinema_hall/cinema_halls_header.dart"; 
+part "cinema_hall/cinema_halls_list.dart"; 
+part "cinema_hall/cinema_halls_status.dart";
 

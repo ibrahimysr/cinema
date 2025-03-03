@@ -43,6 +43,7 @@ dependencies:
   flutter_map: 
   latlong2: 
   font_awesome_flutter: ^10.8.0
+  flutter_staggered_animations:
 
 dev_dependencies:
   flutter_test:
