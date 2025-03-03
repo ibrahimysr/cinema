@@ -375,7 +375,7 @@ class _CinemaDrawerState extends State<CinemaDrawer>
               }
             } else {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => LoginScreen(),
+                builder: (context) => const LoginScreen(),
               ));
             }
           },

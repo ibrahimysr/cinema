@@ -1,4 +1,3 @@
-// city_selector.dart
 import 'package:cinema/components/components.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/models/city.dart';
@@ -8,9 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class CitySelector extends StatelessWidget {
+  const CitySelector({super.key});
+
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
     ));
@@ -21,7 +22,7 @@ class CitySelector extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Text(
+        title: const Text(
           'SİNEMA KEŞFİ',
           style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.5),
         ),
@@ -29,15 +30,17 @@ class CitySelector extends StatelessWidget {
       ),
       body: ChangeNotifierProvider(
         create: (_) => CitySelectorViewModel(),
-        child: CitySelectorBody(),
+        child: const CitySelectorBody(),
       ),
     );
   }
 }
 
 class CitySelectorBody extends StatefulWidget {
+  const CitySelectorBody({super.key});
+
   @override
-  _CitySelectorBodyState createState() => _CitySelectorBodyState();
+  State<CitySelectorBody> createState() => _CitySelectorBodyState();
 }
 
 class _CitySelectorBodyState extends State<CitySelectorBody> with SingleTickerProviderStateMixin {
@@ -50,13 +53,13 @@ class _CitySelectorBodyState extends State<CitySelectorBody> with SingleTickerPr
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
     );
 
     _fadeInAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(0.2, 1.0, curve: Curves.easeInOut),
+        curve: const Interval(0.2, 1.0, curve: Curves.easeInOut),
       ),
     );
 
@@ -103,7 +106,7 @@ class _CitySelectorBodyState extends State<CitySelectorBody> with SingleTickerPr
                   }
                 },
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               CinemasList(
                 animationController: _animationController,
                 fadeInAnimation: _fadeInAnimation,

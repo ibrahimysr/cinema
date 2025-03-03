@@ -226,7 +226,7 @@ class MovieDetailScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) =>  CinemaHallsScreenProvider(),
+                      builder: (_) =>  const CinemaHallsScreenProvider(),
                     ),
                   );
                 },

@@ -3,12 +3,12 @@ part of "../components.dart";
 class HallCard extends StatelessWidget {
   final Hall hall;
 
-  const HallCard({required this.hall});
+  const HallCard({super.key, required this.hall});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: Appcolor.grey,
         borderRadius: BorderRadius.circular(16),
@@ -16,7 +16,7 @@ class HallCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha:0.2),
             blurRadius: 10,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
@@ -43,24 +43,24 @@ class HallCard extends StatelessWidget {
                     color: Appcolor.buttonColor,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Icon(Icons.event_seat, color: Colors.black, size: 30),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         hall.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Appcolor.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         'Kapasite: ${hall.capacity} kişi',
                         style: TextStyle(
@@ -68,8 +68,8 @@ class HallCard extends StatelessWidget {
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(height: 6),
-                      Row(
+                      const SizedBox(height: 6),
+                      const Row(
                         children: [
                           HallFeature(icon: Icons.hd, label: 'HD'),
                           SizedBox(width: 12),
@@ -81,7 +81,7 @@ class HallCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Icon(Icons.arrow_forward_ios, color: Appcolor.buttonColor, size: 16),
+                const Icon(Icons.arrow_forward_ios, color: Appcolor.buttonColor, size: 16),
               ],
             ),
           ),

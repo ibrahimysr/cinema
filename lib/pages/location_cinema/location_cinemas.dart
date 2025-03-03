@@ -17,14 +17,14 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
   final List<Map<String, dynamic>> cinemas = [
     {
       'name': 'Max Cinema',
-      'location': LatLng(32.7157, -117.1611),
+      'location': const LatLng(32.7157, -117.1611),
       'distance': '1.2km',
       'rating': 4.7,
       'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfMwUwnO0Z2IYt162CKjX3eBifprCorgeR_w&s'
     },
     {
       'name': 'Forum Sinema',
-      'location': LatLng(32.7257, -117.1611),
+      'location': const LatLng(32.7257, -117.1611),
       'distance': '1.24km',
       'rating': 4.5,
       'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfMwUwnO0Z2IYt162CKjX3eBifprCorgeR_w&s'
@@ -51,6 +51,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
                 urlTemplate: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
                 userAgentPackageName: 'com.example.app',
                 backgroundColor: Appcolor.appBackgroundColor,
+                
                 subdomains: const ['a', 'b', 'c', 'd'],
               ),
               MarkerLayer(

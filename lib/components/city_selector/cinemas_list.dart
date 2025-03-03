@@ -5,7 +5,7 @@ class CinemasList extends StatelessWidget {
   final AnimationController animationController;
   final Animation<double> fadeInAnimation;
 
-  const CinemasList({
+  const CinemasList({super.key, 
     required this.animationController,
     required this.fadeInAnimation,
   });
@@ -15,7 +15,7 @@ class CinemasList extends StatelessWidget {
     final viewModel = Provider.of<CitySelectorViewModel>(context);
 
     if (viewModel.isCinemasLoading) {
-      return Expanded(
+      return const Expanded(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,11 +46,11 @@ class CinemasList extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(Icons.movie_filter, color: Appcolor.buttonColor),
-                SizedBox(width: 8),
+                const Icon(Icons.movie_filter, color: Appcolor.buttonColor),
+                const SizedBox(width: 8),
                 Text(
                   '${viewModel.selectedCity!.name} Sinemaları',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -58,7 +58,7 @@ class CinemasList extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: AnimatedBuilder(
                 animation: fadeInAnimation,
@@ -66,7 +66,7 @@ class CinemasList extends StatelessWidget {
                   return Opacity(
                     opacity: fadeInAnimation.value,
                     child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemCount: viewModel.cinemas.length,
                       itemBuilder: (context, index) {
                         final cinema = viewModel.cinemas[index];
@@ -83,7 +83,7 @@ class CinemasList extends StatelessWidget {
     }
 
     if (viewModel.selectedCity != null && viewModel.cinemas.isEmpty && !viewModel.isCinemasLoading) {
-      return Expanded(
+      return const Expanded(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -122,12 +122,12 @@ class CinemasList extends StatelessWidget {
                     color: Appcolor.buttonColor.withValues(alpha:0.2),
                     shape: BoxShape.circle,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Icon(Icons.location_on, color: Appcolor.buttonColor, size: 50),
                   ),
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               AnimatedBuilder(
                 animation: animationController,
                 builder: (context, child) {
@@ -136,7 +136,7 @@ class CinemasList extends StatelessWidget {
                     child: child,
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Sinemaları görmek için bir şehir seçin',
                   style: TextStyle(color: Colors.white70, fontSize: 16),
                   textAlign: TextAlign.center,
@@ -148,7 +148,7 @@ class CinemasList extends StatelessWidget {
       );
     }
 
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   Widget _buildCinemaItem(BuildContext context, Cinema cinema, int index) {
@@ -167,12 +167,12 @@ class CinemasList extends StatelessWidget {
           child: Opacity(
             opacity: itemAnimation.value,
             child: Padding(
-              padding: EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.only(bottom: 16),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Appcolor.grey.withValues(alpha:0.5),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 4)),
                   ],
                 ),
@@ -193,12 +193,12 @@ class CinemasList extends StatelessWidget {
                             ),
                           );
                           viewModel.saveSelectedCinema(viewModel.selectedCity!.id, cinema.id);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => CinemaMainScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaMainScreen()));
                         },
                         splashColor: Appcolor.buttonColor.withValues(alpha:0.3),
                         highlightColor: Appcolor.buttonColor.withValues(alpha:0.1),
                         child: Padding(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -211,50 +211,50 @@ class CinemasList extends StatelessWidget {
                                       color: Appcolor.buttonColor,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Center(
+                                    child: const Center(
                                       child: Icon(Icons.movie, color: Colors.white, size: 30),
                                     ),
                                   ),
-                                  SizedBox(width: 16),
+                                  const SizedBox(width: 16),
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           cinema.name,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        SizedBox(height: 4),
+                                        const SizedBox(height: 4),
                                         Text(
                                           cinema.address,
-                                          style: TextStyle(color: Colors.white70, fontSize: 14),
+                                          style: const TextStyle(color: Colors.white70, fontSize: 14),
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Icon(Icons.arrow_forward_ios, color: Appcolor.buttonColor, size: 16),
+                                  const Icon(Icons.arrow_forward_ios, color: Appcolor.buttonColor, size: 16),
                                 ],
                               ),
-                              SizedBox(height: 12),
-                              Divider(color: Colors.white24),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 12),
+                              const Divider(color: Colors.white24),
+                              const SizedBox(height: 8),
                               Column(
                                 children: [
                                   _buildContactInfoRow(Icons.phone, cinema.phone),
-                                  SizedBox(height: 6),
+                                  const SizedBox(height: 6),
                                   _buildContactInfoRow(
                                     Icons.email,
                                     cinema.email.length > 20 ? '${cinema.email.substring(0, 20)}...' : cinema.email,
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 12),
+                              const SizedBox(height: 12),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
@@ -286,11 +286,11 @@ class CinemasList extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, color: Appcolor.buttonColor, size: 16),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Expanded(
           child: Text(
             text,
-            style: TextStyle(color: Colors.white70, fontSize: 13),
+            style: const TextStyle(color: Colors.white70, fontSize: 13),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
@@ -301,7 +301,7 @@ class CinemasList extends StatelessWidget {
 
   Widget _buildDetailChip(IconData icon, String label, Color bgColor) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: bgColor.withValues(alpha:0.7),
         borderRadius: BorderRadius.circular(30),
@@ -310,10 +310,10 @@ class CinemasList extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, color: Colors.white, size: 14),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           Text(
             label,
-            style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+            style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
           ),
         ],
       ),

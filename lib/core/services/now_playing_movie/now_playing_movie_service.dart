@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/core/services/base/base_service.dart';
@@ -28,7 +29,7 @@ class NowPlayingMovieService extends BaseService implements NowPlayingMovieServi
         throw Exception('API\'den vizyondaki film verileri alınamadı: ${response.statusCode}');
       }
     } catch (e) {
-      print('Vizyondaki film verileri çekilirken hata oluştu: $e');
+      log('Vizyondaki film verileri çekilirken hata oluştu: $e');
       return []; 
     }
   }

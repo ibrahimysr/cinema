@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/core/services/base/base_service.dart';
@@ -28,7 +29,7 @@ class MovieDetailsService extends BaseService implements MovieDetailsServiceInte
         throw Exception('API\'den film detayları alınamadı: ${response.statusCode}');
       }
     } catch (e) {
-      print('Film detayları çekilirken hata oluştu: $e');
+      log('Film detayları çekilirken hata oluştu: $e');
       return null;
     }
   }
@@ -49,7 +50,7 @@ class MovieDetailsService extends BaseService implements MovieDetailsServiceInte
         throw Exception('API\'den film arama sonuçları alınamadı: ${response.statusCode}');
       }
     } catch (e) {
-      print('Film arama sonuçları çekilirken hata oluştu: $e');
+      log('Film arama sonuçları çekilirken hata oluştu: $e');
       return [];
     }
   }

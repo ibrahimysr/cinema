@@ -3,7 +3,7 @@ part of "../components.dart";
 class CitySelectorHeader extends StatelessWidget {
   final AnimationController animationController;
 
-  const CitySelectorHeader({required this.animationController});
+  const CitySelectorHeader({super.key, required this.animationController});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class CitySelectorHeader extends StatelessWidget {
               ),
             );
           },
-          child: Text(
+          child: const Text(
             'En iyi filmleri keşfet',
             style: TextStyle(
               color: Colors.white,
@@ -31,7 +31,7 @@ class CitySelectorHeader extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         AnimatedBuilder(
           animation: animationController,
           builder: (context, child) {
@@ -51,7 +51,7 @@ class CitySelectorHeader extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 40),
+        const SizedBox(height: 40),
       ],
     );
   }

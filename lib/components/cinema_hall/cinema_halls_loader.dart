@@ -1,6 +1,8 @@
 part of "../components.dart";
 
 class CinemaHallsLoader extends StatelessWidget {
+  const CinemaHallsLoader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -9,11 +11,11 @@ class CinemaHallsLoader extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(
+            const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Appcolor.buttonColor),
               strokeWidth: 3,
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Text(
               'Sinema bilgileri yükleniyor...',
               style: TextStyle(

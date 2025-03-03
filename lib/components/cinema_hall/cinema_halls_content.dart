@@ -6,7 +6,7 @@ class CinemaHallsContent extends StatelessWidget {
   final Animation<double> fadeAnimation;
   final Animation<Offset> slideAnimation;
 
-  const CinemaHallsContent({
+  const CinemaHallsContent({super.key, 
     required this.viewModel,
     required this.fadeAnimation,
     required this.slideAnimation,
@@ -15,7 +15,7 @@ class CinemaHallsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (viewModel.cinema == null) {
-      return Center(
+      return const Center(
         child: Text('Sinema bilgisi bulunamadı', style: TextStyle(color: Appcolor.white)),
       );
     }
@@ -25,7 +25,7 @@ class CinemaHallsContent extends StatelessWidget {
       child: SlideTransition(
         position: slideAnimation,
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -33,7 +33,7 @@ class CinemaHallsContent extends StatelessWidget {
             ),
           ),
           child: CustomScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             slivers: [
               SliverToBoxAdapter(child: CinemaHeader(cinema: viewModel.cinema!)),
               SliverToBoxAdapter(
@@ -49,8 +49,8 @@ class CinemaHallsContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(2),
                         ),
                       ),
-                      SizedBox(width: 8),
-                      Text(
+                      const SizedBox(width: 8),
+                      const Text(
                         'Salonlar',
                         style: TextStyle(
                           color: Appcolor.white,
@@ -63,7 +63,7 @@ class CinemaHallsContent extends StatelessWidget {
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 24),
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
                 sliver: SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {

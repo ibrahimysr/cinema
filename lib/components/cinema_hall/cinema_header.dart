@@ -4,12 +4,12 @@ part of "../components.dart";
 class CinemaHeader extends StatelessWidget {
   final CinemaSalon cinema;
 
-  const CinemaHeader({required this.cinema});
+  const CinemaHeader({super.key, required this.cinema});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 100, bottom: 10, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 100, bottom: 10, left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,7 +20,7 @@ class CinemaHeader extends StatelessWidget {
               Expanded(
                 child: Text(
                   cinema.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Appcolor.white,
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
@@ -29,12 +29,12 @@ class CinemaHeader extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   color: Appcolor.grey.withValues(alpha:0.7),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Row(
+                child: const Row(
                   children: [
                     Icon(Icons.star, color: Appcolor.buttonColor, size: 18),
                     SizedBox(width: 4),
@@ -47,12 +47,12 @@ class CinemaHeader extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           InfoItem(icon: Icons.location_on_outlined, text: cinema.address),
           InfoItem(icon: Icons.phone_outlined, text: cinema.phone),
           InfoItem(icon: Icons.email_outlined, text: cinema.email),
-          SizedBox(height: 24),
-          Wrap(
+          const SizedBox(height: 24),
+          const Wrap(
             spacing: 10,
             runSpacing: 10,
             children: [
@@ -62,7 +62,7 @@ class CinemaHeader extends StatelessWidget {
               FeatureChip(label: 'Engelli Erişimi'),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Divider(color: Appcolor.grey.withValues(alpha:0.5), thickness: 1),
         ],
       ),

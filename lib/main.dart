@@ -3,6 +3,7 @@ import 'package:cinema/core/services/service_provider.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/pages/auth/login_screen.dart';
 import 'package:cinema/pages/home/home_page_cinema.dart';
+import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:cinema/viewmodels/all_movies_viewmodel.dart';
 import 'package:cinema/viewmodels/auth_viewmodel.dart';
 import 'package:cinema/viewmodels/cinema_hall_viewmodel.dart';
@@ -52,15 +53,15 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: 'Poppins',
         ),
-        home:  CitySelector(), //Consumer<AuthViewModel>(
-        //   builder: (context, authViewModel, child) {
-        //     if (authViewModel.isLoggedIn) {
-        //       return const HomePageCinema();
-        //     } else {
-        //       return const HomePageCinema();
-        //     }
-        //   },
-        // ),
+        home:  Consumer<AuthViewModel>(
+          builder: (context, authViewModel, child) {
+            if (authViewModel.isLoggedIn) {
+              return const LoginScreen();
+            } else {
+              return const CitySelector();
+            }
+          },
+        ),
       ),
     );
   }
@@ -87,7 +88,7 @@ class _AuthCheckScreenState extends State<AuthCheckScreen> {
     if (mounted) {
       if (authViewModel.isLoggedIn) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) =>  HomePageCinema()),
+          MaterialPageRoute(builder: (_) =>  const HomePageCinema()),
         );
       } else {
         Navigator.of(context).pushReplacement(

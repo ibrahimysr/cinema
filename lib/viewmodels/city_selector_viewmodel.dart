@@ -47,7 +47,7 @@ class CitySelectorViewModel extends ChangeNotifier {
       errorMessage = null;
       notifyListeners();
 
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 300));
       cinemas = await _cinemaService.fetchCinemas(cityId);
       isCinemasLoading = false;
       notifyListeners();
@@ -70,8 +70,7 @@ class CitySelectorViewModel extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('selectedCityId', cityId);
     await prefs.setInt('selectedCinemaId', cinemaId);
-    print('Seçilen şehir ID: $cityId');
-    print("Seçilen sinema ID: $cinemaId");
+  
   }
 
   Future<void> initSharedPreferences() async {

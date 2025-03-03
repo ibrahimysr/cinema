@@ -22,7 +22,7 @@ class IconHelper {
       case 'belgesel':
         return FontAwesomeIcons.video;
       case 'drama':
-        return FontAwesomeIcons.theaterMasks;
+        return FontAwesomeIcons.marsStrokeRight;
       case 'family':
       case 'aile':
         return FontAwesomeIcons.peopleGroup;

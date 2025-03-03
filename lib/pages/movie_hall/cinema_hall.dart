@@ -6,8 +6,10 @@ import 'package:provider/provider.dart';
 
 
 class CinemaHallsScreen extends StatefulWidget {
+  const CinemaHallsScreen({super.key});
+
   @override
-  _CinemaHallsScreenState createState() => _CinemaHallsScreenState();
+  State<CinemaHallsScreen> createState() => _CinemaHallsScreenState();
 }
 
 class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTickerProviderStateMixin {
@@ -20,12 +22,12 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 800),
     );
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
-    _slideAnimation = Tween<Offset>(begin: Offset(0, 0.5), end: Offset.zero).animate(
+    _slideAnimation = Tween<Offset>(begin: const Offset(0, 0.5), end: Offset.zero).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
     );
 
@@ -58,15 +60,15 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
             elevation: 0,
             title: Text(
               viewModel.cinema?.name ?? 'Sinema Salonları',
-              style: TextStyle(color: Appcolor.white, fontWeight: FontWeight.bold),
+              style: const TextStyle(color: Appcolor.white, fontWeight: FontWeight.bold),
             ),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Appcolor.buttonColor),
+              icon: const Icon(Icons.arrow_back_ios, color: Appcolor.buttonColor),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
           body: viewModel.isLoading
-              ? CinemaHallsLoader()
+              ? const CinemaHallsLoader()
               : viewModel.error != null
                   ? CinemaHallsError(error: viewModel.error!)
                   : CinemaHallsContent(

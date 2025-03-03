@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/core/services/base/base_service.dart';
@@ -28,7 +29,7 @@ class AllMoviesService extends BaseService implements AllMoviesServiceInterface 
         throw Exception('API\'den tüm film verileri alınamadı: ${response.statusCode}');
       }
     } catch (e) {
-      print('Tüm film verileri çekilirken hata oluştu: $e');
+      log('Tüm film verileri çekilirken hata oluştu: $e');
       return []; 
     }
   }
@@ -42,7 +43,7 @@ class AllMoviesService extends BaseService implements AllMoviesServiceInterface 
         movie.genre.toLowerCase().contains(genre.toLowerCase())
       ).toList();
     } catch (e) {
-      print('Kategoriye göre film verileri çekilirken hata oluştu: $e');
+      log('Kategoriye göre film verileri çekilirken hata oluştu: $e');
       return [];
     }
   }

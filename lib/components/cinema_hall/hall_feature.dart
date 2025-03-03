@@ -5,14 +5,14 @@ class HallFeature extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const HallFeature({required this.icon, required this.label});
+  const HallFeature({super.key, required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Icon(icon, size: 14, color: Appcolor.buttonColor),
-        SizedBox(width: 4),
+        const SizedBox(width: 4),
         Text(
           label,
           style: TextStyle(

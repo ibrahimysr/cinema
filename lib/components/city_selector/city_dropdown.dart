@@ -5,7 +5,7 @@ class CityDropdown extends StatelessWidget {
   final AnimationController animationController;
   final Function(City?) onCitySelected;
 
-  const CityDropdown({
+  const CityDropdown({super.key, 
     required this.animationController,
     required this.onCitySelected,
   });
@@ -15,7 +15,7 @@ class CityDropdown extends StatelessWidget {
     final viewModel = Provider.of<CitySelectorViewModel>(context);
 
     if (viewModel.isLoading) {
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(color: Appcolor.buttonColor),
       );
     }
@@ -24,14 +24,14 @@ class CityDropdown extends StatelessWidget {
       return Center(
         child: Column(
           children: [
-            Icon(Icons.error_outline, color: Colors.red, size: 50),
-            SizedBox(height: 16),
+            const Icon(Icons.error_outline, color: Colors.red, size: 50),
+            const SizedBox(height: 16),
             Text(
               viewModel.errorMessage!,
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: viewModel.resetErrorAndRetryCities,
               style: ElevatedButton.styleFrom(
@@ -40,7 +40,7 @@ class CityDropdown extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: Text('Tekrar Dene'),
+              child: const Text('Tekrar Dene'),
             ),
           ],
         ),
@@ -62,19 +62,19 @@ class CityDropdown extends StatelessWidget {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<City>(
                       isExpanded: true,
-                      hint: Text('Şehir Seçin', style: TextStyle(color: Colors.white70)),
-                      icon: Icon(Icons.location_city, color: Appcolor.buttonColor),
+                      hint: const Text('Şehir Seçin', style: TextStyle(color: Colors.white70)),
+                      icon: const Icon(Icons.location_city, color: Appcolor.buttonColor),
                       dropdownColor: Appcolor.grey.withValues(alpha:0.95),
                       value: viewModel.selectedCity,
                       onChanged: onCitySelected,
                       items: viewModel.cities.map<DropdownMenuItem<City>>((City city) {
                         return DropdownMenuItem<City>(
                           value: city,
-                          child: Text(city.name, style: TextStyle(color: Colors.white)),
+                          child: Text(city.name, style: const TextStyle(color: Colors.white)),
                         );
                       }).toList(),
                     ),
