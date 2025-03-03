@@ -119,7 +119,7 @@ class CinemasList extends StatelessWidget {
                   width: 120,
                   height: 120,
                   decoration: BoxDecoration(
-                    color: Appcolor.buttonColor.withOpacity(0.2),
+                    color: Appcolor.buttonColor.withValues(alpha:0.2),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -171,7 +171,7 @@ class CinemasList extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Appcolor.grey.withOpacity(0.5),
+                  color: Appcolor.grey.withValues(alpha:0.5),
                   boxShadow: [
                     BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 4)),
                   ],
@@ -195,8 +195,8 @@ class CinemasList extends StatelessWidget {
                           viewModel.saveSelectedCinema(viewModel.selectedCity!.id, cinema.id);
                           Navigator.push(context, MaterialPageRoute(builder: (context) => CinemaMainScreen()));
                         },
-                        splashColor: Appcolor.buttonColor.withOpacity(0.3),
-                        highlightColor: Appcolor.buttonColor.withOpacity(0.1),
+                        splashColor: Appcolor.buttonColor.withValues(alpha:0.3),
+                        highlightColor: Appcolor.buttonColor.withValues(alpha:0.1),
                         child: Padding(
                           padding: EdgeInsets.all(16),
                           child: Column(
@@ -303,7 +303,7 @@ class CinemasList extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: bgColor.withOpacity(0.7),
+        color: bgColor.withValues(alpha:0.7),
         borderRadius: BorderRadius.circular(30),
       ),
       child: Row(

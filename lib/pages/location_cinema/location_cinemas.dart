@@ -157,7 +157,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
               height: MediaQuery.of(context).size.height * 0.32,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Appcolor.appBackgroundColor.withOpacity(0.9),
+                color: Appcolor.appBackgroundColor.withValues(alpha:0.9),
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: Column(

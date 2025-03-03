@@ -55,7 +55,7 @@ class CityDropdown extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Appcolor.grey.withOpacity(0.5),
+              color: Appcolor.grey.withValues(alpha:0.5),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
@@ -68,7 +68,7 @@ class CityDropdown extends StatelessWidget {
                       isExpanded: true,
                       hint: Text('Şehir Seçin', style: TextStyle(color: Colors.white70)),
                       icon: Icon(Icons.location_city, color: Appcolor.buttonColor),
-                      dropdownColor: Appcolor.grey.withOpacity(0.95),
+                      dropdownColor: Appcolor.grey.withValues(alpha:0.95),
                       value: viewModel.selectedCity,
                       onChanged: onCitySelected,
                       items: viewModel.cities.map<DropdownMenuItem<City>>((City city) {

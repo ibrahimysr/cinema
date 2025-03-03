@@ -16,7 +16,7 @@ class HallFeature extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: Appcolor.white.withOpacity(0.6),
+            color: Appcolor.white.withValues(alpha:0.6),
             fontSize: 12,
           ),
         ),

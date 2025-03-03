@@ -18,7 +18,7 @@ class MovieInfo extends StatelessWidget {
       width: 110,
       padding: context.paddingLow,
       decoration: BoxDecoration(
-        color: Colors.white10.withOpacity(0.05),
+        color: Colors.white10.withValues(alpha:0.05),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(

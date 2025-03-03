@@ -256,7 +256,7 @@ Widget build(BuildContext context) {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 35),
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
+                  color: Colors.grey.withValues(alpha:0.1),
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(50),
                   ),

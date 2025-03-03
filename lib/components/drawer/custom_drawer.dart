@@ -311,7 +311,7 @@ class _CinemaDrawerState extends State<CinemaDrawer>
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
           colors: isSelected
-              ? [Appcolor.buttonColor.withOpacity(0.5), Appcolor.grey]
+              ? [Appcolor.buttonColor.withValues(alpha:0.5), Appcolor.grey]
               : [Appcolor.grey, Appcolor.grey],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -344,7 +344,7 @@ class _CinemaDrawerState extends State<CinemaDrawer>
               Icon(
                 Icons.arrow_forward_ios,
                 color: (isSelected ? Appcolor.buttonColor : Colors.white)
-                    .withOpacity(0.5),
+                    .withValues(alpha:0.5),
                 size: 12,
               ),
             ],

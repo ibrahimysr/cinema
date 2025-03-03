@@ -31,7 +31,7 @@ class CinemaHeader extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: Appcolor.grey.withOpacity(0.7),
+                  color: Appcolor.grey.withValues(alpha:0.7),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -63,7 +63,7 @@ class CinemaHeader extends StatelessWidget {
             ],
           ),
           SizedBox(height: 20),
-          Divider(color: Appcolor.grey.withOpacity(0.5), thickness: 1),
+          Divider(color: Appcolor.grey.withValues(alpha:0.5), thickness: 1),
         ],
       ),
     );

@@ -67,8 +67,8 @@ class GenreCategoryList extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             border: Border.all(
                               color: isSelected 
-                                  ? Appcolor.buttonColor.withOpacity(0.8)
-                                  : Colors.grey.withOpacity(0.3),
+                                  ? Appcolor.buttonColor.withValues(alpha:0.8)
+                                  : Colors.grey.withValues(alpha:0.3),
                               width: 1.5,
                             ),
                           ),

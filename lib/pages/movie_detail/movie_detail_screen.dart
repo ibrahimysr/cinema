@@ -117,7 +117,7 @@ class MovieDetailScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: Appcolor.buttonColor.withOpacity(0.2),
+                        color: Appcolor.buttonColor.withValues(alpha:0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -133,7 +133,7 @@ class MovieDetailScreen extends StatelessWidget {
               Padding(
                 padding: context.paddingNormalVertical,
                 child: Divider(
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withValues(alpha:0.1),
                 ),
               ),
               if (movie.genre.isNotEmpty && movie.genre != 'N/A')

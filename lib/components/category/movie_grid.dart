@@ -76,7 +76,7 @@ class MovieGrid extends StatelessWidget {
           color: Colors.black26,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: Colors.grey.withOpacity(0.2),
+            color: Colors.grey.withValues(alpha:0.2),
             width: 1,
           ),
         ),
@@ -119,7 +119,7 @@ class MovieGrid extends StatelessWidget {
                                 end: Alignment.bottomCenter,
                                 colors: [
                                   Colors.transparent,
-                                  Colors.black.withOpacity(0.8),
+                                  Colors.black.withValues(alpha:0.8),
                                 ],
                                 stops: const [0.6, 1.0],
                               ),
@@ -133,7 +133,7 @@ class MovieGrid extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                               decoration: BoxDecoration(
-                                color: Appcolor.buttonColor.withOpacity(0.9),
+                                color: Appcolor.buttonColor.withValues(alpha:0.9),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(

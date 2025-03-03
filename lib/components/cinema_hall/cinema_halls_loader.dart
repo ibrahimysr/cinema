@@ -17,7 +17,7 @@ class CinemaHallsLoader extends StatelessWidget {
             Text(
               'Sinema bilgileri yükleniyor...',
               style: TextStyle(
-                color: Appcolor.white.withOpacity(0.8),
+                color: Appcolor.white.withValues(alpha:0.8),
                 fontSize: 16,
               ),
             ),

@@ -59,7 +59,7 @@ class _CinemaMainScreenState extends State<CinemaMainScreen> {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withValues(alpha:0.1),
                           spreadRadius: currentIndex == index ? 10 : 0,
                           blurRadius: currentIndex == index ? 15 : 0
                         )
@@ -70,7 +70,7 @@ class _CinemaMainScreenState extends State<CinemaMainScreen> {
                     bottomIcons[index],
                     color: currentIndex == index
                         ? Colors.white
-                        : Colors.white.withOpacity(0.3),
+                        : Colors.white.withValues(alpha:0.3),
                   ),
                 ],
               ),

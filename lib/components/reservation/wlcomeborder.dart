@@ -19,7 +19,7 @@ Padding wlecomeBorder(BuildContext context) {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Appcolor.buttonColor.withOpacity(0.3),
+                        Appcolor.buttonColor.withValues(alpha:0.3),
                         Colors.transparent
                       ],
                       stops: const [

@@ -152,7 +152,7 @@ class CategorySection extends StatelessWidget {
                                   color: Colors.black26,
                                   borderRadius: BorderRadius.circular(20),
                                   border: Border.all(
-                                    color: Colors.grey.withOpacity(0.3),
+                                    color: Colors.grey.withValues(alpha:0.3),
                                     width: 1.5,
                                   ),
                                 ),

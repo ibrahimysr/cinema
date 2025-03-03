@@ -14,7 +14,7 @@ class HallCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withValues(alpha:0.2),
             blurRadius: 10,
             offset: Offset(0, 5),
           ),
@@ -24,8 +24,8 @@ class HallCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          splashColor: Appcolor.buttonColor.withOpacity(0.1),
-          highlightColor: Appcolor.buttonColor.withOpacity(0.05),
+          splashColor: Appcolor.buttonColor.withValues(alpha:0.1),
+          highlightColor: Appcolor.buttonColor.withValues(alpha:0.05),
           onTap: () {
             Navigator.push(
               context,
@@ -64,7 +64,7 @@ class HallCard extends StatelessWidget {
                       Text(
                         'Kapasite: ${hall.capacity} kişi',
                         style: TextStyle(
-                          color: Appcolor.white.withOpacity(0.7),
+                          color: Appcolor.white.withValues(alpha:0.7),
                           fontSize: 14,
                         ),
                       ),

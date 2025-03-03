@@ -19,7 +19,7 @@ class FeatureChip extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-          color: Appcolor.white.withOpacity(0.9),
+          color: Appcolor.white.withValues(alpha:0.9),
           fontSize: 12,
         ),
       ),

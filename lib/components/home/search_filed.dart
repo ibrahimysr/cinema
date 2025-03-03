@@ -12,7 +12,7 @@ Padding searchField(BuildContext context) {
           
           context.paddingNormalVertical,
           filled: true,
-          fillColor: Colors.white.withOpacity(0.05),
+          fillColor: Colors.white.withValues(alpha:0.05),
           hintText: "Search",
           hintStyle: const TextStyle(
             color: Colors.white54,
