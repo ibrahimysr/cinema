@@ -4,7 +4,6 @@ import 'package:cinema/viewmodels/cinema_hall_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 class CinemaHallsScreen extends StatefulWidget {
   const CinemaHallsScreen({super.key});
 
@@ -16,6 +15,7 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+  late CinemaHallsViewModel _viewModel; 
 
   @override
   void initState() {
@@ -32,9 +32,9 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final viewModel = Provider.of<CinemaHallsViewModel>(context, listen: false);
-      viewModel.fetchCinemaData().then((_) {
-        if (viewModel.error == null && viewModel.cinema != null) {
+      _viewModel = Provider.of<CinemaHallsViewModel>(context, listen: false);
+      _viewModel.fetchCinemaData().then((_) {
+        if (_viewModel.error == null && _viewModel.cinema != null) {
           _controller.forward();
         }
       });
@@ -44,7 +44,7 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
   @override
   void dispose() {
     _controller.dispose();
-    Provider.of<CinemaHallsViewModel>(context, listen: false).disposeService();
+    _viewModel.disposeService(); 
     super.dispose();
   }
 

@@ -23,8 +23,7 @@ class NowPlayingMovieService extends BaseService implements NowPlayingMovieServi
       );
       
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        return data.map((json) => Movie.fromJson(json)).toList();
+        return parseMovies(response.body);
       } else {
         throw Exception('API\'den vizyondaki film verileri alınamadı: ${response.statusCode}');
       }
@@ -33,4 +32,20 @@ class NowPlayingMovieService extends BaseService implements NowPlayingMovieServi
       return []; 
     }
   }
-} 
+
+  List<Movie> parseMovies(String jsonString) {
+    try {
+      final jsonData = jsonDecode(jsonString);
+      if (jsonData is Map<String, dynamic> && jsonData.containsKey('movies')) {
+        return (jsonData['movies'] as List).map((json) => Movie.fromJson(json)).toList();
+      } else if (jsonData is List) {
+        return jsonData.map((json) => Movie.fromJson(json)).toList();
+      } else {
+        throw Exception('Beklenmeyen JSON formatı');
+      }
+    } catch (e) {
+      log('JSON parse edilirken hata oluştu: $e');
+      return [];
+    }
+  }
+}

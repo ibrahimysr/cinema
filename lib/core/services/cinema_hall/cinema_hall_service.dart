@@ -11,7 +11,7 @@ class CinemaHallService {
 
   Future<CinemaSalon> getCinemaDetails(int cityId, int cinemaId) async {
     try {
-      final response = await _apiClient.get('v1/cities/$cityId/cinemas/$cinemaId');
+      final response = await _apiClient.get('c1/cities/$cityId/cinemas/$cinemaId');
       
       if (response['status'] == true && response['cinema'] != null) {
         return CinemaSalon.fromJson(response['cinema']);
