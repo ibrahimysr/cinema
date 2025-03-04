@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CinemaHallsScreen extends StatefulWidget {
-  const CinemaHallsScreen({super.key});
+  final int id;
+   CinemaHallsScreen({super.key, required this.id});
 
   @override
   State<CinemaHallsScreen> createState() => _CinemaHallsScreenState();
@@ -20,6 +21,7 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
   @override
   void initState() {
     super.initState();
+    print("${widget.id}");
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),
@@ -31,14 +33,14 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
       CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _viewModel = Provider.of<CinemaHallsViewModel>(context, listen: false);
-      _viewModel.fetchCinemaData().then((_) {
-        if (_viewModel.error == null && _viewModel.cinema != null) {
-          _controller.forward();
-        }
-      });
-    });
+ WidgetsBinding.instance.addPostFrameCallback((_) {
+  _viewModel = Provider.of<CinemaHallsViewModel>(context, listen: false);
+  _viewModel.fetchCinemaData(movieId: widget.id).then((_) { 
+    if (_viewModel.error == null && _viewModel.cinema != null) {
+      _controller.forward();
+    }
+  });
+});
   }
 
   @override

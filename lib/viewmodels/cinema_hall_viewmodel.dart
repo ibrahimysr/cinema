@@ -1,41 +1,36 @@
-// cinema_halls_viewmodel.dart
-import 'package:cinema/core/services/index.dart';
+import 'package:cinema/core/services/cinema_hall/cinema_hall_service.dart';
 import 'package:cinema/models/cinema_salon.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CinemaHallsViewModel extends ChangeNotifier {
   final CinemaHallService _cinemaService;
-
   CinemaSalon? cinema;
-  bool isLoading = true;
   String? error;
+  bool isLoading = false;
 
-  CinemaHallsViewModel({CinemaHallService? cinemaService}) 
-      : _cinemaService = cinemaService ?? CinemaHallService();
+  CinemaHallsViewModel({CinemaHallService? service})
+      : _cinemaService = service ?? CinemaHallService();
 
-  Future<void> fetchCinemaData() async {
+  Future<void> fetchCinemaData({int? movieId}) async {
+    isLoading = true;
+    notifyListeners();
+
     try {
-      isLoading = true;
-      error = null;
-      notifyListeners();
-
       final prefs = await SharedPreferences.getInstance();
-      final cityId = prefs.getInt('selectedCityId');
       final cinemaId = prefs.getInt('selectedCinemaId');
+      final fetchedMovieId = movieId ?? 1;
 
-      if (cityId == null || cinemaId == null) {
-        error = 'Şehir veya sinema ID\'si bulunamadı';
-        isLoading = false;
-        notifyListeners();
-        return;
+      if (cinemaId == null) {
+        throw Exception('Seçili sinema bulunamadı');
       }
 
-      cinema = await _cinemaService.getCinemaDetails(cityId, cinemaId);
-      isLoading = false;
-      notifyListeners();
+      cinema = await _cinemaService.getCinemaShowtimes(cinemaId, fetchedMovieId);
+      error = null;
     } catch (e) {
-      error = 'Hata oluştu: $e';
+      error = e.toString();
+      cinema = null;
+    } finally {
       isLoading = false;
       notifyListeners();
     }

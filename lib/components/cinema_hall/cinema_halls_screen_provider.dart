@@ -2,13 +2,14 @@ part of "../components.dart";
 
 
 class CinemaHallsScreenProvider extends StatelessWidget {
-  const CinemaHallsScreenProvider({super.key});
+  final int movieId; // movieId parametresi
+  const CinemaHallsScreenProvider({super.key, required this.movieId});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => CinemaHallsViewModel(),
-      child: const CinemaHallsScreen(),
+      child:  CinemaHallsScreen(id: movieId,),
     );
   }
 }

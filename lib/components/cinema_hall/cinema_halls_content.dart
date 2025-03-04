@@ -1,12 +1,12 @@
 part of "../components.dart";
 
-
 class CinemaHallsContent extends StatelessWidget {
   final CinemaHallsViewModel viewModel;
   final Animation<double> fadeAnimation;
   final Animation<Offset> slideAnimation;
 
-  const CinemaHallsContent({super.key, 
+  const CinemaHallsContent({
+    super.key,
     required this.viewModel,
     required this.fadeAnimation,
     required this.slideAnimation,

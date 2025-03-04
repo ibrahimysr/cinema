@@ -1,4 +1,3 @@
-// cinema_service.dart
 import 'dart:developer';
 import 'package:cinema/core/services/api/api_client.dart';
 import 'package:cinema/models/cinema_salon.dart';
@@ -9,17 +8,17 @@ class CinemaHallService {
 
   CinemaHallService({http.Client? client}) : _apiClient = ApiClient(client: client);
 
-  Future<CinemaSalon> getCinemaDetails(int cityId, int cinemaId) async {
+  Future<CinemaSalon> getCinemaShowtimes(int cinemaId, int movieId) async {
     try {
-      final response = await _apiClient.get('c1/cities/$cityId/cinemas/$cinemaId');
-      
+      final response = await _apiClient.get('cinemas/$cinemaId/movies/$movieId/showtimes');
+
       if (response['status'] == true && response['cinema'] != null) {
-        return CinemaSalon.fromJson(response['cinema']);
+        return CinemaSalon.fromJson(response);
       } else {
-        throw Exception('Sinema bilgileri alınamadı');
+        throw Exception('Sinema seans bilgileri alınamadı');
       }
     } catch (e) {
-      log('CinemaService Error: $e');
+      log('CinemaHallService Error: $e');
       rethrow;
     }
   }

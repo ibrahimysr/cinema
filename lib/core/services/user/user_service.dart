@@ -48,7 +48,6 @@ class UserService extends BaseService implements UserServiceInterface {
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
         final user = UserModel.fromJson(data);
-        // Kullanıcı bilgilerini güncelle
         await _storageService.saveData(AuthService.userKey, json.encode(data));
         return user;
       } else {

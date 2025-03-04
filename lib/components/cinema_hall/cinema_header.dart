@@ -48,9 +48,9 @@ class CinemaHeader extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          InfoItem(icon: Icons.location_on_outlined, text: cinema.address),
-          InfoItem(icon: Icons.phone_outlined, text: cinema.phone),
-          InfoItem(icon: Icons.email_outlined, text: cinema.email),
+          InfoItem(icon: Icons.location_on_outlined, text: "cinema.address"),
+          InfoItem(icon: Icons.phone_outlined, text: "cinema.phone"),
+          InfoItem(icon: Icons.email_outlined, text: "cinema.email"),
           const SizedBox(height: 24),
           const Wrap(
             spacing: 10,
