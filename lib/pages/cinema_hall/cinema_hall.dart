@@ -103,9 +103,9 @@ class _EnhancedDatePickerState extends State<EnhancedDatePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Text(
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child:  Text(
             'Tarih Seçin',
             style: TextStyle(
               color: Appcolor.white,

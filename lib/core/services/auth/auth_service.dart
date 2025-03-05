@@ -39,12 +39,57 @@ class AuthService extends BaseService implements AuthServiceInterface {
         }),
       );
 
+      log('Login API Response - Status: ${response.statusCode}, Body: ${response.body}');
+
       if (response.statusCode == 200) {
-        final Map<String, dynamic> data = json.decode(response.body);
-        await _saveAuthData(data);
-        return data;
+        if (response.body.isEmpty) {
+          throw Exception('API response body boş veya null');
+        }
+
+        final dynamic decodedData;
+        try {
+          decodedData = json.decode(response.body);
+        } catch (e) {
+          log('JSON decode hatası: $e');
+          throw Exception('API response geçerli bir JSON değil: ${response.body}');
+        }
+
+        if (decodedData is! Map<String, dynamic>) {
+          throw Exception('API response beklenen formatta değil: $decodedData');
+        }
+
+        final Map<String, dynamic> data = decodedData;
+
+        if (data['status'] != true) {
+          throw Exception(data['message'] ?? 'Giriş başarısız');
+        }
+
+        final Map<String, dynamic> userData = data['data'] as Map<String, dynamic>;
+        if (userData['access_token'] == null) {
+          throw Exception('Token veya kullanıcı bilgileri eksik');
+        }
+
+        final Map<String, dynamic> authData = {
+          'access_token': userData['access_token'],
+          'user': {
+            'id': userData['user_id'],
+            'name': userData['user_name'],
+            'email': userData['user_email'],
+            'role_id': userData['user_role_id'],
+            'cinema_id': userData['cinema_id'],
+          },
+        };
+
+        await _saveAuthData(authData);
+        return authData;
       } else {
-        final errorData = json.decode(response.body);
+        final dynamic errorData;
+        try {
+          errorData = json.decode(response.body);
+        } catch (e) {
+          log('Hata JSON decode hatası: $e');
+          throw Exception('API hatası: ${response.statusCode} - ${response.body}');
+        }
         throw Exception(errorData['message'] ?? 'Giriş başarısız');
       }
     } catch (e) {
@@ -75,9 +120,38 @@ class AuthService extends BaseService implements AuthServiceInterface {
       log('Response Body: ${response.body}');
 
       if (response.statusCode == 200 || response.statusCode == 201) {
+        if (response.body.isEmpty) {
+          throw Exception('API response body boş veya null');
+        }
+
+        final dynamic decodedData;
+        try {
+          decodedData = json.decode(response.body);
+        } catch (e) {
+          log('JSON decode hatası: $e');
+          throw Exception('API response geçerli bir JSON değil: ${response.body}');
+        }
+
+        if (decodedData is! Map<String, dynamic>) {
+          throw Exception('API response beklenen formatta değil: $decodedData');
+        }
+
+        final Map<String, dynamic> data = decodedData;
+
+        if (data['status'] != true) {
+          throw Exception(data['message'] ?? 'Kayıt başarısız');
+        }
+
+
         return await login(email, password);
       } else {
-        final errorData = json.decode(response.body);
+        final dynamic errorData;
+        try {
+          errorData = json.decode(response.body);
+        } catch (e) {
+          log('Hata JSON decode hatası: $e');
+          throw Exception('API hatası: ${response.statusCode} - ${response.body}');
+        }
         throw Exception(errorData['message'] ?? errorData.toString() ?? 'Kayıt başarısız');
       }
     } catch (e) {
@@ -119,4 +193,4 @@ class AuthService extends BaseService implements AuthServiceInterface {
       await _storageService.removeData(userKey);
     }
   }
-} 
+}
