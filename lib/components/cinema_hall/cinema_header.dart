@@ -9,7 +9,7 @@ class CinemaHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 100, bottom: 10, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 10,  left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,7 +19,7 @@ class CinemaHeader extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  cinema.name,
+                  cinema.cinemaName,
                   style: const TextStyle(
                     color: Appcolor.white,
                     fontSize: 26,

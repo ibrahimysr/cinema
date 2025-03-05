@@ -1,3 +1,4 @@
+
 class SeatData {
   final int id;
   final String row;
@@ -36,7 +37,7 @@ class RowData {
   factory RowData.fromJson(Map<String, dynamic> json) {
     var seatsList = json['seats'] as List;
     List<SeatData> seatData = seatsList.map((i) => SeatData.fromJson(i)).toList();
-    
+
     return RowData(
       row: json['row'],
       seats: seatData,
@@ -58,7 +59,7 @@ class SeatsLayout {
   factory SeatsLayout.fromJson(Map<String, dynamic> json) {
     var rowsList = json['rows'] as List;
     List<RowData> rowData = rowsList.map((i) => RowData.fromJson(i)).toList();
-    
+
     return SeatsLayout(
       totalRows: json['total_rows'],
       seatsPerRow: json['seats_per_row'],
@@ -70,19 +71,22 @@ class SeatsLayout {
 class ShowtimeData {
   final int id;
   final String startTime;
-  final Map<String, dynamic> hall;
+  final int hallId;
+  final String hallName;
 
   ShowtimeData({
     required this.id,
     required this.startTime,
-    required this.hall,
+    required this.hallId,
+    required this.hallName,
   });
 
   factory ShowtimeData.fromJson(Map<String, dynamic> json) {
     return ShowtimeData(
-      id: json['id'],
-      startTime: json['start_time'],
-      hall: json['hall'],
+      id: json['showtime_id'],
+      startTime: json['showtime_start_time'],
+      hallId: json['hall_id'],
+      hallName: json['hall_name'],
     );
   }
 }
@@ -104,8 +108,8 @@ class ApiResponse {
     return ApiResponse(
       status: json['status'],
       message: json['message'],
-      showtime: ShowtimeData.fromJson(json['showtime']),
-      seatsLayout: SeatsLayout.fromJson(json['seats_layout']),
+      showtime: ShowtimeData.fromJson(json['data']), // 'data' içinden alıyoruz
+      seatsLayout: SeatsLayout.fromJson(json['data']['seats_layout']), // 'data.seats_layout'
     );
   }
 }

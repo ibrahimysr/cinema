@@ -38,7 +38,7 @@ class CinemaHallsContent extends StatelessWidget {
               SliverToBoxAdapter(child: CinemaHeader(cinema: viewModel.cinema!)),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
+                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
                   child: Row(
                     children: [
                       Container(

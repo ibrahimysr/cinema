@@ -21,14 +21,14 @@ class Cinema {
 
   factory Cinema.fromJson(Map<String, dynamic> json) {
     return Cinema(
-      id: json['id'],
-      name: json['name'],
-      address: json['address'],
-      phone: json['phone'],
-      email: json['email'],
+      id: json['cinema_id'], 
+      name: json['cinema_name'], 
+      address: json['cinema_address'], 
+      phone: json['cinema_phone'], 
+      email: json['cinema_email'], 
       hallCount: json['hall_count'],
       totalCapacity: json['total_capacity'],
       activeHalls: json['active_halls'],
     );
   }
-} 
+}

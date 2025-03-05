@@ -9,7 +9,7 @@ class CinemaHallsScreenProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => CinemaHallsViewModel(),
-      child:  CinemaHallsScreen(id: movieId,),
+      child:  CinemaHallsScreen(movieId: movieId,),
     );
   }
 }

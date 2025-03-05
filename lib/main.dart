@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: 'Poppins',
         ),
-        home:  Consumer<AuthViewModel>(
+        home: Consumer<AuthViewModel>(
           builder: (context, authViewModel, child) {
             if (authViewModel.isLoggedIn) {
               return const LoginScreen();

@@ -36,8 +36,8 @@ class NowPlayingMovieService extends BaseService implements NowPlayingMovieServi
   List<Movie> parseMovies(String jsonString) {
     try {
       final jsonData = jsonDecode(jsonString);
-      if (jsonData is Map<String, dynamic> && jsonData.containsKey('movies')) {
-        return (jsonData['movies'] as List).map((json) => Movie.fromJson(json)).toList();
+      if (jsonData is Map<String, dynamic> && jsonData.containsKey('data')) {
+        return (jsonData['data'] as List).map((json) => Movie.fromJson(json)).toList();
       } else if (jsonData is List) {
         return jsonData.map((json) => Movie.fromJson(json)).toList();
       } else {

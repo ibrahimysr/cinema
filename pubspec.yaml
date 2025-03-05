@@ -44,6 +44,7 @@ dependencies:
   latlong2: 
   font_awesome_flutter: ^10.8.0
   flutter_staggered_animations:
+  table_calendar:
 
 dev_dependencies:
   flutter_test:

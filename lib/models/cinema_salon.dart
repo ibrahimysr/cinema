@@ -1,24 +1,48 @@
 class CinemaSalon {
-  final int id;
-  final String name;
+  final int cinemaId;
+  final String cinemaName;
+  final int movieId;
+  final String movieTitle;
+  final int movieDuration;
+  final String moviePosterUrl;
   final List<Hall> halls;
 
   CinemaSalon({
-    required this.id,
-    required this.name,
+    required this.cinemaId,
+    required this.cinemaName,
+    required this.movieId,
+    required this.movieTitle,
+    required this.movieDuration,
+    required this.moviePosterUrl,
     required this.halls,
   });
 
   factory CinemaSalon.fromJson(Map<String, dynamic> json) {
-    List<Hall> hallsList = [];
-    if (json['halls'] != null) {
-      hallsList = List<Hall>.from(json['halls'].map((x) => Hall.fromJson(x)));
+    // Showtime'ları gruplandırarak hall'ları oluşturacağız
+    final showtimesRaw = json['showtimes'] as List;
+    final Map<int, Hall> hallMap = {};
+
+    for (var showtimeJson in showtimesRaw) {
+      final hallId = showtimeJson['hall_id'] as int;
+      if (!hallMap.containsKey(hallId)) {
+        hallMap[hallId] = Hall(
+          id: hallId,
+          name: showtimeJson['hall_name'],
+          capacity: showtimeJson['hall_capacity'],
+          showtimes: [],
+        );
+      }
+      hallMap[hallId]!.showtimes.add(Showtime.fromJson(showtimeJson));
     }
 
     return CinemaSalon(
-      id: json['cinema']['id'],
-      name: json['cinema']['name'],
-      halls: hallsList,
+      cinemaId: json['cinema_id'],
+      cinemaName: json['cinema_name'],
+      movieId: json['movie_id'],
+      movieTitle: json['movie_title'],
+      movieDuration: json['movie_duration'],
+      moviePosterUrl: json['movie_poster_url'],
+      halls: hallMap.values.toList(),
     );
   }
 }
@@ -37,20 +61,10 @@ class Hall {
   });
 
   factory Hall.fromJson(Map<String, dynamic> json) {
-    List<Showtime> showtimesList = [];
-    if (json['showtimes'] != null) {
-      showtimesList = List<Showtime>.from(json['showtimes'].map((x) => Showtime.fromJson(x)));
-    }
-
-    return Hall(
-      id: json['id'],
-      name: json['name'],
-      capacity: json['capacity'],
-      showtimes: showtimesList,
-    );
+    // Bu metod artık kullanılmayacak, çünkü hall'ları CinemaSalon içinde oluşturuyoruz
+    throw UnimplementedError();
   }
 }
-
 class Movie1 {
   final int id;
   final String title;
@@ -66,10 +80,10 @@ class Movie1 {
 
   factory Movie1.fromJson(Map<String, dynamic> json) {
     return Movie1(
-      id: json['id'],
-      title: json['title'],
-      duration: json['duration'] ?? 0,
-      posterUrl: json['poster_url'] ?? '',
+      id: json['movie_id'],
+      title: json['movie_title'],
+      duration: json['movie_duration'] ?? 0,
+      posterUrl: json['movie_poster_url'] ?? '',
     );
   }
 }
@@ -89,7 +103,7 @@ class Showtime {
 
   factory Showtime.fromJson(Map<String, dynamic> json) {
     return Showtime(
-      id: json['id'],
+      id: json['showtime_id'], // 'id' yerine 'showtime_id'
       startTime: DateTime.parse(json['start_time']),
       endTime: DateTime.parse(json['end_time']),
       price: json['price']?.toDouble(),

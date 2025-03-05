@@ -8,7 +8,7 @@ class HallCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 16), // 'custom' burada hata verebilir, 'bottom' olabilir mi?
       decoration: BoxDecoration(
         color: Appcolor.grey,
         borderRadius: BorderRadius.circular(16),
@@ -95,7 +95,12 @@ class HallCard extends StatelessWidget {
                       style: const TextStyle(color: Appcolor.white),
                     ),
                     onTap: () {
-                      _onShowtimeSelected(context, showtime, hall.id);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ReservationScreen(showtimeId: showtime.id), 
+                        ),
+                      );
                     },
                   );
                 }).toList(),
@@ -106,16 +111,5 @@ class HallCard extends StatelessWidget {
 
   String _formatDateTime(DateTime dateTime) {
     return '${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
-  }
-
-  void _onShowtimeSelected(BuildContext context, Showtime showtime, int salonId) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ReservationScreen(
-          salonId: showtime.id,
-        ),
-      ),
-    );
   }
 }

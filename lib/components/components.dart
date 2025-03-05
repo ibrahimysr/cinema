@@ -11,7 +11,7 @@ import 'package:cinema/models/movie_model.dart';
 import 'package:cinema/pages/category/movies_category_screen.dart';
 import 'package:cinema/pages/main/cinema_main_screen.dart';
 import 'package:cinema/pages/movie_detail/movie_detail_screen.dart';
-import 'package:cinema/pages/movie_hall/cinema_hall.dart';
+import 'package:cinema/pages/cinema_hall/cinema_hall.dart';
 import 'package:cinema/pages/reservation/reservation_screen.dart';
 import 'package:cinema/viewmodels/all_movies_viewmodel.dart';
 import 'package:cinema/viewmodels/cinema_hall_viewmodel.dart';
