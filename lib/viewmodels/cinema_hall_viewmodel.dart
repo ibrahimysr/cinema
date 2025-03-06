@@ -9,7 +9,7 @@ class CinemaHallsViewModel extends ChangeNotifier {
   CinemaSalon? cinema;
   String? error;
   bool isLoading = false;
-  String selectedDate = DateFormat('yyyy-MM-dd').format(DateTime.now()); // Varsayılan bugünün tarihi
+  String selectedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());  
 
   CinemaHallsViewModel({CinemaHallService? service})
       : _cinemaService = service ?? CinemaHallService();
@@ -22,7 +22,7 @@ class CinemaHallsViewModel extends ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       final cinemaId = prefs.getInt('selectedCinemaId');
       final fetchedMovieId = movieId ?? 1;
-      final fetchedDate = date ?? selectedDate; // Tarih yoksa varsayılanı kullan
+      final fetchedDate = date ?? selectedDate; 
 
       if (cinemaId == null) {
         throw Exception('Seçili sinema bulunamadı');

@@ -2,6 +2,7 @@ import 'package:cinema/components/components.dart';
 import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
+import 'package:cinema/pages/profile/ticket_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../viewmodels/auth_viewmodel.dart';
@@ -62,51 +63,66 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 CircleAvatar(
                   radius: 50,
                   backgroundColor: Appcolor.buttonColor,
-                  child: Text(user?.name.substring(0, 1).toUpperCase() ?? 'U',
-                      style: AppTextStyles.headerLarge),
+                  child: Text(
+                    user?.userName.substring(0, 1).toUpperCase() ?? 'U',
+                    style: AppTextStyles.headerLarge,
+                  ),
                 ),
                 const SizedBox(height: 20),
-                Text(user?.name ?? 'Kullanıcı',
-                    style: AppTextStyles.headerLarge),
+                Text(
+                  user?.userName ?? 'Kullanıcı',
+                  style: AppTextStyles.headerLarge,
+                ),
                 const SizedBox(height: 8),
-                Text(user?.email ?? 'email@example.com',
-                    style: AppTextStyles.bodyMedium.copyWith(fontSize: 16)),
+                Text(
+                  user?.userEmail ?? 'email@example.com',
+                  style: AppTextStyles.bodyMedium.copyWith(fontSize: 16),
+                ),
                 SizedBox(height: context.getDynamicHeight(3)),
                 buildMenuItem(
-                    icon: Icons.person_outline,
-                    title: 'Hesap Bilgileri',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AccountDetailsScreen(),
-                        ),
-                      );
-                    },
-                    context: context),
+                  icon: Icons.person_outline,
+                  title: 'Hesap Bilgileri',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AccountDetailsScreen(),
+                      ),
+                    );
+                  },
+                  context: context,
+                ),
                 buildMenuItem(
-                    icon: Icons.notifications_outlined,
-                    title: 'Bildirimler',
-                    onTap: () {},
-                    context: context),
+                  icon: Icons.confirmation_number_outlined,
+                  title: 'Biletlerim (${user?.ticketTotalCount ?? 0})',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TicketsDetailsScreen(),
+                      ),
+                    );
+                  },
+                  context: context,
+                ),
                 buildMenuItem(
-                    icon: Icons.movie_outlined,
-                    title: 'İzleme Geçmişi',
-                    onTap: () {
-                    },
-                    context: context),
+                  icon: Icons.movie_outlined,
+                  title: 'İzleme Geçmişi',
+                  onTap: () {},
+                  context: context,
+                ),
                 buildMenuItem(
-                    icon: Icons.favorite_border,
-                    title: 'Favori Filmler',
-                    onTap: () {
-                    },
-                    context: context),
+                  icon: Icons.favorite_border,
+                  title: 'Favori Filmler',
+                  onTap: () {},
+                  context: context,
+                ),
                 buildMenuItem(
-                    icon: Icons.settings_outlined,
-                    title: 'Ayarlar',
-                    onTap: () {
-                    },
-                    context: context),
+                  icon: Icons.settings_outlined,
+                  title: 'Ayarlar',
+                  onTap: () {},
+                  context: context,
+                ),
                 SizedBox(height: context.getDynamicHeight(3)),
                 if (authViewModel.isLoading)
                   const Center(child: CircularProgressIndicator())
@@ -119,7 +135,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         if (context.mounted) {
                           Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                                builder: (context) => const LoginScreen()),
+                              builder: (context) => const LoginScreen(),
+                            ),
                             (route) => false,
                           );
                         }
@@ -127,8 +144,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                                content:
-                                    Text('Çıkış yapılırken hata oluştu: $e')),
+                              content: Text('Çıkış yapılırken hata oluştu: $e'),
+                            ),
                           );
                         }
                       }

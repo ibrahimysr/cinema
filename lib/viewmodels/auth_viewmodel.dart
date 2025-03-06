@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import '../models/user_model.dart';
 import '../core/services/index.dart';
@@ -47,7 +46,7 @@ class AuthViewModel extends ChangeNotifier {
     try {
       final response = await _authService.login(email, password);
       _token = response['access_token'];
-      _user = UserModel.fromJson(response['user']);
+      await refreshProfile(); 
       _isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -64,7 +63,7 @@ class AuthViewModel extends ChangeNotifier {
     try {
       final response = await _authService.register(name, email, password, passwordConfirm);
       _token = response['access_token'];
-      _user = UserModel.fromJson(response['user']);
+      await refreshProfile(); 
       _isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -91,4 +90,4 @@ class AuthViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
-} 
+}

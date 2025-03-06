@@ -2,7 +2,7 @@ part of "../components.dart";
 
 
 class CinemaHallsScreenProvider extends StatelessWidget {
-  final int movieId; // movieId parametresi
+  final int movieId; 
   const CinemaHallsScreenProvider({super.key, required this.movieId});
 
   @override

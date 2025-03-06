@@ -14,13 +14,13 @@ abstract class UserServiceInterface {
 class UserService extends BaseService implements UserServiceInterface {
   final StorageService _storageService;
   final http.Client _client;
-  
+
   UserService({
     required StorageService storageService,
     http.Client? client,
-  }) : _storageService = storageService,
-       _client = client ?? http.Client();
-  
+  })  : _storageService = storageService,
+        _client = client ?? http.Client();
+
   @override
   http.Client get httpClient => _client;
 
@@ -46,9 +46,12 @@ class UserService extends BaseService implements UserServiceInterface {
       );
 
       if (response.statusCode == 200) {
-        final Map<String, dynamic> data = json.decode(response.body);
-        final user = UserModel.fromJson(data);
-        await _storageService.saveData(AuthService.userKey, json.encode(data));
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        final Map<String, dynamic> userData = responseData['data'];
+        
+        final user = UserModel.fromJson(userData);
+        await _storageService.saveData(
+            AuthService.userKey, json.encode(userData));
         return user;
       } else {
         log('Profil bilgileri alınamadı: ${response.body}');
@@ -59,4 +62,4 @@ class UserService extends BaseService implements UserServiceInterface {
       throw Exception('Profil bilgileri alınırken hata oluştu: $e');
     }
   }
-} 
+}

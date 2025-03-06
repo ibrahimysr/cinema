@@ -108,8 +108,8 @@ class ApiResponse {
     return ApiResponse(
       status: json['status'],
       message: json['message'],
-      showtime: ShowtimeData.fromJson(json['data']), // 'data' içinden alıyoruz
-      seatsLayout: SeatsLayout.fromJson(json['data']['seats_layout']), // 'data.seats_layout'
+      showtime: ShowtimeData.fromJson(json['data']), 
+      seatsLayout: SeatsLayout.fromJson(json['data']['seats_layout']), 
     );
   }
 }

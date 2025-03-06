@@ -192,7 +192,7 @@ class _CinemaDrawerState extends State<CinemaDrawer>
   Widget _buildHeader() {
     return Container(
       padding: context.paddingNormalVertical *
-          2, //const EdgeInsets.symmetric(vertical: 40),
+          2,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -241,7 +241,7 @@ class _CinemaDrawerState extends State<CinemaDrawer>
                       border: Border.all(color: Appcolor.buttonColor, width: 2),
                       color: Appcolor.buttonColor),
                   child: Center(
-                    child: Text(user?.name.substring(0, 1).toUpperCase() ?? 'U',
+                    child: Text(user?.userName.substring(0, 1).toUpperCase() ?? 'U',
                         style:
                             AppTextStyles.headerLarge.copyWith(fontSize: 24)),
                   ),
@@ -254,7 +254,7 @@ class _CinemaDrawerState extends State<CinemaDrawer>
                   children: [
                     FadeTransition(
                       opacity: _animation,
-                      child: Text(user?.name ?? "Misafir Kullanıcı",
+                      child: Text(user?.userName ?? "Misafir Kullanıcı",
                           style: AppTextStyles.headerMedium),
                     ),
                     SizedBox(height: context.getDynamicHeight(1)),

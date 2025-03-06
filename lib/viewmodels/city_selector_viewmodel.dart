@@ -1,4 +1,3 @@
-// city_selector_viewmodel.dart
 import 'package:cinema/models/city.dart';
 import 'package:cinema/models/cinema.dart';
 import 'package:cinema/core/services/city/city_service.dart';
@@ -21,8 +20,8 @@ class CitySelectorViewModel extends ChangeNotifier {
   CitySelectorViewModel({
     CityService? cityService,
     CinemaService? cinemaService,
-  })  : _cityService = cityService ?? CityService(apiClient: ApiClient()), // apiClient eklendi
-        _cinemaService = cinemaService ?? CinemaService(apiClient: ApiClient()); // apiClient eklendi
+  })  : _cityService = cityService ?? CityService(apiClient: ApiClient()), 
+        _cinemaService = cinemaService ?? CinemaService(apiClient: ApiClient()); 
 
   Future<void> fetchCities() async {
     try {

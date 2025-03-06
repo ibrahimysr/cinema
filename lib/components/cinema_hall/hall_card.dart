@@ -8,7 +8,7 @@ class HallCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16), // 'custom' burada hata verebilir, 'bottom' olabilir mi?
+      margin: const EdgeInsets.only(bottom: 16), 
       decoration: BoxDecoration(
         color: Appcolor.grey,
         borderRadius: BorderRadius.circular(16),

@@ -18,7 +18,7 @@ class AccountDetailsScreen extends StatelessWidget {
         backgroundColor: Appcolor.appBackgroundColor,
         title: const Text(
           'Hesap Bilgileri',
-          style: AppTextStyles.headerLarge
+          style: AppTextStyles.headerLarge,
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -32,29 +32,21 @@ class AccountDetailsScreen extends StatelessWidget {
           children: [
             _buildInfoSection(
               title: 'Ad Soyad',
-              value: user?.name ?? '-',
+              value: user?.userName ?? '-',
               icon: Icons.person_outline,
             ),
-             SizedBox(height: context.getDynamicHeight(3)),
+            SizedBox(height: context.getDynamicHeight(3)),
             _buildInfoSection(
               title: 'E-posta',
-              value: user?.email ?? '-',
+              value: user?.userEmail ?? '-',
               icon: Icons.email_outlined,
             ),
-             SizedBox(height: context.getDynamicHeight(3)),
+            SizedBox(height: context.getDynamicHeight(3)),
             _buildInfoSection(
-              title: 'Rol',
-              value: user?.roleId == 1 ? 'Super-Admin' : 'Admin',
-              icon: Icons.badge_outlined,
+              title: 'Toplam Bilet Sayısı',
+              value: user?.ticketTotalCount.toString() ?? '0',
+              icon: Icons.confirmation_number_outlined,
             ),
-            if (user?.cinemaId != null) ...[
-              const SizedBox(height: 20),
-              _buildInfoSection(
-                title: 'Sinema ID',
-                value: user?.cinemaId.toString() ?? '-',
-                icon: Icons.movie_outlined,
-              ),
-            ],
           ],
         ),
       ),
@@ -101,4 +93,4 @@ class AccountDetailsScreen extends StatelessWidget {
       ),
     );
   }
-} 
+}

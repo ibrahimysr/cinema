@@ -18,7 +18,6 @@ class CinemaSalon {
   });
 
   factory CinemaSalon.fromJson(Map<String, dynamic> json) {
-    // Showtime'ları gruplandırarak hall'ları oluşturacağız
     final showtimesRaw = json['showtimes'] as List;
     final Map<int, Hall> hallMap = {};
 
@@ -61,7 +60,6 @@ class Hall {
   });
 
   factory Hall.fromJson(Map<String, dynamic> json) {
-    // Bu metod artık kullanılmayacak, çünkü hall'ları CinemaSalon içinde oluşturuyoruz
     throw UnimplementedError();
   }
 }
@@ -103,7 +101,7 @@ class Showtime {
 
   factory Showtime.fromJson(Map<String, dynamic> json) {
     return Showtime(
-      id: json['showtime_id'], // 'id' yerine 'showtime_id'
+      id: json['showtime_id'], 
       startTime: DateTime.parse(json['start_time']),
       endTime: DateTime.parse(json['end_time']),
       price: json['price']?.toDouble(),

@@ -43,7 +43,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
 
     try {
       final result = await _performPayment();
-      if (!mounted) return; // Widget dispose edilmişse devam etme
+      if (!mounted) return; 
 
       _showSnackBar(result['message'], isError: result['isError']);
       if (!result['isError']) {

@@ -26,7 +26,6 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('poster_url')) {
-      // Yeni sunucu response yapısı (poster_url, imdb_raiting vs.)
       return Movie(
         poster: json['poster_url'] ?? '',
         title: json['title'] ?? '',
@@ -37,14 +36,13 @@ class Movie {
         year: json['release_date'] != null
             ? json['release_date'].toString().substring(0, 4)
             : '',
-        director: '', // Yeni yapıda yok
-        actors: '',   // Yeni yapıda yok
+        director: '', 
+        actors: '',   
         id: json['id'] ?? 0,
         language: json['language'] ?? '',
         status: json['status'] ?? '',
       );
     } else {
-      // Eski alternatif yapı (Poster, imdbRating vs.)
       int duration = 0;
       if (json['Runtime'] != null && json['Runtime'] != 'N/A') {
         final runtimeStr = json['Runtime'].toString();
@@ -70,8 +68,8 @@ class Movie {
         director: json['Director'] ?? '',
         actors: json['Actors'] ?? '',
         id: json['id'] ?? 0,
-        language: '', // Eski yapıda yok
-        status: '',   // Eski yapıda yok
+        language: '',
+        status: '',   
       );
     }
   }

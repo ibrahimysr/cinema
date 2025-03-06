@@ -4,7 +4,7 @@ import 'package:cinema/core/extension/context_extension.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
 import 'package:cinema/pages/auth/register_screen.dart';
-import 'package:cinema/pages/main/cinema_main_screen.dart';
+import 'package:cinema/pages/city_selector/city_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../viewmodels/auth_viewmodel.dart';
@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const CinemaMainScreen(),
+                              builder: (context) => const CitySelector(),
                             ),
                           );
                         }

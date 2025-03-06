@@ -1,6 +1,6 @@
 import 'package:cinema/core/theme/color.dart';
-import 'package:cinema/pages/location_cinema/location_cinemas.dart';
 import 'package:cinema/pages/profile/profile_screen.dart';
+import 'package:cinema/pages/profile/ticket_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../home/home_page_cinema.dart';
@@ -15,7 +15,7 @@ class CinemaMainScreen extends StatefulWidget {
 class _CinemaMainScreenState extends State<CinemaMainScreen> {
   List<IconData> bottomIcons = [
     Icons.home_filled,
-    CupertinoIcons.compass_fill,
+    //CupertinoIcons.compass_fill,
     CupertinoIcons.ticket_fill,
     Icons.person_rounded
   ];
@@ -26,8 +26,8 @@ class _CinemaMainScreenState extends State<CinemaMainScreen> {
   void initState() {
     page = [
       const HomePageCinema(),
-      const CinemaMapScreen(),
-      navBarPage(CupertinoIcons.ticket_fill),
+      //const CinemaMapScreen(),
+     const TicketsDetailsScreen(),
       const ProfileScreen(),
     ];
     super.initState();
