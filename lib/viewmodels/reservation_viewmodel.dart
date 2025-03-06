@@ -17,7 +17,8 @@ class ReservationViewModel extends ChangeNotifier {
   ReservationViewModel({
     required TicketService ticketService,
     required AuthService authService,
-  }) : _ticketService = ticketService, _authService = authService;
+  })  : _ticketService = ticketService,
+        _authService = authService;
 
   Future<void> fetchSeats(int showtimeId) async {
     try {
@@ -36,7 +37,8 @@ class ReservationViewModel extends ChangeNotifier {
     }
   }
 
-  Future<TicketCreationResponse?> createTickets(int showtimeId, BuildContext context) async {
+  Future<TicketCreationResponse?> createTickets(
+      int showtimeId, BuildContext context) async {
     if (selectedSeats.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Lütfen en az bir koltuk seçin')),
@@ -46,7 +48,7 @@ class ReservationViewModel extends ChangeNotifier {
 
     try {
       final token = await _authService.getToken();
-      if (token == null) {
+      if (token == null && context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Lütfen önce giriş yapın')),
         );
@@ -62,13 +64,16 @@ class ReservationViewModel extends ChangeNotifier {
       final ticketResponse = await _ticketService.createTickets(
         showtimeId: showtimeId,
         seats: seatsPayload,
-        token: token,
+        token: token!,
       );
       return ticketResponse;
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Hata oluştu: $e')),
-      );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Hata oluştu: $e')),
+        );
+      }
+
       return null;
     }
   }

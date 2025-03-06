@@ -100,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           _passwordController.text,
                           _passwordConfirmController.text,
                         );
-                        if (mounted && authViewModel.isLoggedIn) {
+                        if (context.mounted && authViewModel.isLoggedIn) {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -109,9 +109,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                         }
                       } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(e.toString())),
-                        );
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(e.toString())),
+                          );
+                        }
                       }
                     },
                   ),

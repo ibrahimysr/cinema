@@ -5,7 +5,7 @@ import 'package:cinema/core/services/storage/storage_service.dart';
 import 'package:cinema/core/services/ticket/ticket_service.dart';
 import 'package:cinema/core/theme/color.dart';
 import 'package:cinema/core/theme/text_style.dart';
-import 'package:cinema/pages/payment_confirmation_screen.dart';
+import 'package:cinema/pages/reservation/payment_confirmation_screen.dart';
 import 'package:cinema/viewmodels/reservation_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -101,7 +101,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
               onTap: () async {
                 try {
                   final ticketResponse = await viewModel.createTickets(widget.showtimeId, context);
-                  if (ticketResponse != null) {
+                  if ( context.mounted &&ticketResponse != null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -110,10 +110,11 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     );
                   }
                 } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  if(context.mounted) {  ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Hata oluştu: $e')),
                   );
-                }
+                }}
+                 
               },
               child: Container(
                 width: 150,

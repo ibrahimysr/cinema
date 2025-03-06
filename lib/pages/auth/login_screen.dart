@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           _emailController.text,
                           _passwordController.text,
                         );
-                        if (mounted && authViewModel.isLoggedIn) {
+                        if (context.mounted && authViewModel.isLoggedIn) {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -92,9 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         }
                       } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(e.toString())),
-                        );
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(e.toString())),
+                          );
+                        }
                       }
                     },
                   ),

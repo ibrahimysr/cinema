@@ -1,13 +1,13 @@
-
 import 'dart:convert';
+
 class Movie {
-  final String poster, title, genre, synopsis;
+  final String poster, title, genre, synopsis, language;
   final double rating;
-  final int duration;
+  final int duration, id;
   final String year;
   final String director;
   final String actors;
-  final int id;
+  final String status;
 
   Movie({
     required this.poster,
@@ -20,25 +20,31 @@ class Movie {
     required this.director,
     required this.actors,
     required this.id,
+    required this.language,
+    required this.status,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('poster_url')) {
+      // Yeni sunucu response yapısı (poster_url, imdb_raiting vs.)
       return Movie(
         poster: json['poster_url'] ?? '',
         title: json['title'] ?? '',
         genre: json['genre'] ?? '',
         synopsis: json['description'] ?? '',
-        rating: double.tryParse(json['imdb_raiting'] ?? '0.0') ?? 0.0,
+        rating: double.tryParse(json['imdb_raiting']?.toString() ?? '0.0') ?? 0.0,
         duration: json['duration'] ?? 0,
-        year: json['release_date'] != null 
-            ? json['release_date'].toString().substring(0, 4) 
+        year: json['release_date'] != null
+            ? json['release_date'].toString().substring(0, 4)
             : '',
-        director: '', 
-        actors: '', 
+        director: '', // Yeni yapıda yok
+        actors: '',   // Yeni yapıda yok
         id: json['id'] ?? 0,
+        language: json['language'] ?? '',
+        status: json['status'] ?? '',
       );
     } else {
+      // Eski alternatif yapı (Poster, imdbRating vs.)
       int duration = 0;
       if (json['Runtime'] != null && json['Runtime'] != 'N/A') {
         final runtimeStr = json['Runtime'].toString();
@@ -64,18 +70,19 @@ class Movie {
         director: json['Director'] ?? '',
         actors: json['Actors'] ?? '',
         id: json['id'] ?? 0,
+        language: '', // Eski yapıda yok
+        status: '',   // Eski yapıda yok
       );
     }
   }
 }
 
 List<Movie> parseMovies(String jsonString) {
-  final jsonData = jsonDecode(jsonString); 
+  final jsonData = jsonDecode(jsonString);
   if (jsonData is List) {
     return jsonData.map((json) => Movie.fromJson(json)).toList();
-  } else if (jsonData is Map<String, dynamic> && jsonData.containsKey('movies')) {
-    return (jsonData['movies'] as List).map((json) => Movie.fromJson(json)).toList();
+  } else if (jsonData is Map<String, dynamic> && jsonData.containsKey('data')) {
+    return (jsonData['data'] as List).map((json) => Movie.fromJson(json)).toList();
   }
-  return []; 
+  return [];
 }
-
