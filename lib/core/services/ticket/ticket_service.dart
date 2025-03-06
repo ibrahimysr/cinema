@@ -19,6 +19,8 @@ class TicketService extends BaseService {
         headers: headers,
       );
 
+     
+
       if (response.statusCode == 200) {
         final jsonData = json.decode(response.body);
         return ApiResponse.fromJson(jsonData);
@@ -26,6 +28,7 @@ class TicketService extends BaseService {
         throw Exception('API hatası: ${response.statusCode}');
       }
     } catch (e) {
+     
       throw Exception('Bağlantı hatası: $e');
     }
   }
@@ -36,13 +39,13 @@ class TicketService extends BaseService {
     required String token,
   }) async {
     try {
-      // Prepare the payload
       final payload = {
         'showtimes_id': showtimeId,
         'seats': seats,
       };
 
-      // Make the API call
+   
+     
       final response = await _client.post(
         buildUrl('tickets/create'),
         headers: {
@@ -52,20 +55,19 @@ class TicketService extends BaseService {
         body: json.encode(payload),
       );
 
-      // Check the response status
+    
+   
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // Parse the JSON response
         final jsonResponse = json.decode(response.body);
         return TicketCreationResponse.fromJson(jsonResponse);
       } else {
-        // Handle error responses
         if (response.statusCode == 401) {
           throw Exception('Yetkilendirme hatası');
         }
         throw Exception('API hatası: ${response.statusCode} - ${response.body}');
       }
     } catch (e) {
-      // Catch and rethrow any errors
+    
       throw Exception('Ticket oluşturma hatası: $e');
     }
   }

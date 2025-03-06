@@ -1,5 +1,4 @@
 import 'package:cinema/core/services/auth/auth_service.dart';
-import 'package:cinema/core/services/storage/storage_service.dart';
 import 'package:cinema/core/services/ticket/ticket_service.dart';
 import 'package:cinema/models/cinema_seats_model.dart';
 import 'package:cinema/models/ticket_model.dart';

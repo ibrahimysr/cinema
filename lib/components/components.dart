@@ -20,6 +20,7 @@ import 'package:cinema/viewmodels/movie_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 
@@ -72,4 +73,5 @@ part "cinema_hall/feature_chip.dart";
 part "cinema_hall/hall_card.dart";
 part "cinema_hall/hall_feature.dart";
 part "cinema_hall/cinema_halls_screen_provider.dart";
+part "cinema_hall/enhanced_date_picker.dart";
 

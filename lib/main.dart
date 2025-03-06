@@ -8,9 +8,12 @@ import 'package:cinema/viewmodels/cinema_hall_viewmodel.dart';
 import 'package:cinema/viewmodels/movie_viewmodel.dart';
 import 'package:cinema/viewmodels/film_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+
+   await Hive.initFlutter(); 
   WidgetsFlutterBinding.ensureInitialized();
   
   await ServiceProvider().initialize();
