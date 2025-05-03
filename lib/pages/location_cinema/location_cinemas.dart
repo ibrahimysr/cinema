@@ -44,7 +44,7 @@ class _CinemaMapScreenState extends State<CinemaMapScreen> {
               initialZoom: 13.0,
               minZoom: 10,
               maxZoom: 18,
-              backgroundColor: Appcolor.appBackgroundColor, // Harita arka plan rengi
+              backgroundColor: Appcolor.appBackgroundColor, 
             ),
             children: [
               TileLayer(
