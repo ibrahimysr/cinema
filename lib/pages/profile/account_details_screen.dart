@@ -69,13 +69,13 @@ class AccountDetailsScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: Appcolor.buttonColor, size: 20),
+              Icon(icon, color: Appcolor.buttonColor, size: 21),
               const SizedBox(width: 8),
               Text(
                 title,
                 style: TextStyle(
                   color: Colors.grey[400],
-                  fontSize: 14,
+                  fontSize: 16,
                 ),
               ),
             ],
@@ -85,7 +85,7 @@ class AccountDetailsScreen extends StatelessWidget {
             value,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
           ),
