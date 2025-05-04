@@ -89,7 +89,7 @@ class _CinemaHallsScreenState extends State<CinemaHallsScreen> with SingleTicker
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  viewModel.cinema?.cinemaName ?? 'Cinemarine Adana',
+                  viewModel.cinema?.cinemaName ?? 'Sinema Bulunamadı',
                   style: const TextStyle(
                     color: Appcolor.white, 
                     fontSize: 16,
